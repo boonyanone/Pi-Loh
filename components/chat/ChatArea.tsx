@@ -9,7 +9,7 @@ interface ChatAreaProps {
 
 export default function ChatArea({ onReferencesDetected }: ChatAreaProps) {
     const [input, setInput] = useState('');
-    const { messages, sendMessage, status } = useChat({
+    const { messages, append, status } = useChat({
         onFinish: ({ message }) => {
             // Extract text from parts to find references
             const text = message.parts
@@ -44,8 +44,11 @@ export default function ChatArea({ onReferencesDetected }: ChatAreaProps) {
         if (!input.trim() || isLoading) return;
         const text = input;
         setInput('');
-        await sendMessage({
-            parts: [{ type: 'text', text }]
+
+        // Use append for standard SDK behavior
+        await append({
+            role: 'user',
+            content: text
         });
     };
 
@@ -102,9 +105,7 @@ export default function ChatArea({ onReferencesDetected }: ChatAreaProps) {
                                 {m.role === 'user' ? 'คุณอภิชาติ (Accountant)' : 'พี่โล่ AI Consultant'}
                             </div>
                             <div className={`${m.role === 'user' ? 'bg-slate-50 border border-slate-200 rounded-tr-none' : 'bg-white border border-slate-200'} p-4 rounded-2xl text-slate-800 text-[15px] shadow-sm whitespace-pre-wrap`}>
-                                {m.parts.map((part, i) => (
-                                    part.type === 'text' ? <span key={i}>{renderContentWithHighlights(part.text)}</span> : null
-                                ))}
+                                {renderContentWithHighlights(m.content)}
                             </div>
                         </div>
                     </div>
