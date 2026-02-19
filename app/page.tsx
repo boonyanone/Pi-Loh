@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header";
 import ChatArea from "@/components/chat/ChatArea";
 import ReferencePanel from "@/components/reference/ReferencePanel";
 
+// CACHE BUSTER: 2026-02-19T18:56:00
 export default function Home() {
   const [activeRefs, setActiveRefs] = useState<string[]>([]);
   const [auditScore, setAuditScore] = useState(78);
