@@ -3,7 +3,6 @@ import { streamText } from "ai";
 import { SYSTEM_PROMPT } from "@/lib/ai/system-prompt";
 import { getRelevantKnowledge } from "@/lib/ai/knowledge";
 
-// Unique build ID to force fresh deployment: 2026-02-19T16:55:00
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
@@ -13,38 +12,51 @@ export async function POST(req: Request) {
 
     try {
         const { messages } = await req.json();
-        const coreMessages = messages.map((m: any) => ({
-            role: m.role,
-            content: m.content || m.parts?.filter((p: any) => p.type === 'text').map((p: any) => (p as any).text).join('') || ''
-        }));
+
+        // Robust message mapping for AI SDK v4/6
+        const coreMessages = messages.map((m: any) => {
+            let content = "";
+            if (typeof m.content === 'string') {
+                content = m.content;
+            } else if (Array.isArray(m.parts)) {
+                content = m.parts.filter((p: any) => p.type === 'text').map((p: any) => p.text).join('\n');
+            } else if (m.parts && typeof m.parts === 'object') {
+                // Handle single part object if it exists
+                content = (m.parts as any).text || "";
+            }
+
+            return {
+                role: m.role === 'assistant' ? 'assistant' : 'user',
+                content: content || "สวัสดี" // Fallback to avoid empty content
+            };
+        });
 
         const lastMessage = coreMessages[coreMessages.length - 1]?.content || "";
         const context = getRelevantKnowledge(lastMessage);
 
-        // Forced v20 with standard gemini-1.5-flash
+        // Version v30: Try standard flash with prefix and specific version
         const result = streamText({
-            model: google("gemini-1.5-flash"),
+            model: google("gemini-1.5-flash-8b"), // 8b is usually the most available
             system: SYSTEM_PROMPT + context,
             messages: coreMessages,
         });
 
         const response = result.toTextStreamResponse();
-        response.headers.set('X-Version', 'v20');
-        response.headers.set('Cache-Control', 'no-store, max-age=0');
+        response.headers.set('X-Version', 'v30');
+        response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
         return response;
     } catch (error) {
-        console.error("Chat API v20 Error:", error);
+        console.error("Chat API v30 Error:", error);
         return new Response(JSON.stringify({
-            version: "v20",
-            timestamp: "2026-02-19T16:55:00",
+            version: "v30",
             error: (error as Error).message,
-            name: (error as any).name
+            stack: (error as Error).stack
         }), {
             status: 500,
             headers: {
                 'Content-Type': 'application/json',
-                'Cache-Control': 'no-store',
-                'X-Version': 'v20'
+                'X-Version': 'v30',
+                'Cache-Control': 'no-store'
             }
         });
     }
