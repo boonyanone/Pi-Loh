@@ -6,17 +6,20 @@ export async function POST(req: Request) {
 
     try {
         const { messages } = await req.json();
-        const lastMessage = messages[messages.length - 1]?.content || "สวัสดี";
+        const lastMessage = messages[messages.length - 1]?.content || "วันนี้วันที่เท่าไหร่";
 
-        // Version v110: DIRECT REST API CALL (No SDK)
-        // Trying gemini-1.5-flash-8b as it's often the most accessible on free tier
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        // Version v120: DIRECT REST API CALL to 'gemini-pro-latest' 
+        // which was explicitly seen in v50 diagnostic list.
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-latest:generateContent?key=${apiKey}`;
 
         const googleResponse = await fetch(apiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                contents: [{ parts: [{ text: lastMessage }] }]
+                contents: [{
+                    role: "user",
+                    parts: [{ text: lastMessage }]
+                }]
             })
         });
 
@@ -24,29 +27,38 @@ export async function POST(req: Request) {
 
         if (data.error) {
             return new Response(JSON.stringify({
-                version: "v110",
+                version: "v120",
                 error: data.error.message,
                 details: data.error
             }), { status: 500, headers: { 'Content-Type': 'application/json' } });
         }
 
-        const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response text found";
+        // Extracting text from standard Google AI response structure
+        const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (!aiText) {
+            return new Response(JSON.stringify({
+                version: "v120",
+                error: "No text in AI response",
+                raw: data
+            }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+        }
 
         return new Response(aiText, {
             headers: {
-                'X-Version': 'v110',
+                'X-Version': 'v120',
                 'Content-Type': 'text/plain; charset=utf-8',
                 'Cache-Control': 'no-store'
             }
         });
     } catch (error) {
-        console.error("Chat API v110 Error:", error);
+        console.error("Chat API v120 Error:", error);
         return new Response(JSON.stringify({
-            version: "v110",
+            version: "v120",
             error: (error as Error).message
         }), {
             status: 500,
-            headers: { 'Content-Type': 'application/json', 'X-Version': 'v110' }
+            headers: { 'Content-Type': 'application/json', 'X-Version': 'v120' }
         });
     }
 }
