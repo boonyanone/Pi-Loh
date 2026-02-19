@@ -1,14 +1,32 @@
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { generateText } from "ai";
+
+// Allow streaming responses up to 30 seconds
+export const maxDuration = 30;
+
+const google = createGoogleGenerativeAI({
+    apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+    baseURL: "https://generativelanguage.googleapis.com/v1beta",
+});
+
 export async function POST(req: Request) {
     if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
         return new Response("Missing GOOGLE_GENERATIVE_AI_API_KEY", { status: 500 });
     }
 
     try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${process.env.GOOGLE_GENERATIVE_AI_API_KEY}`);
-        const data = await response.json();
-        return new Response(JSON.stringify(data));
+        const { text } = await generateText({
+            model: google("gemini-1.5-flash-latest"),
+            prompt: "สวัสดีครับ ตอบสั้นๆ ว่าพร้อมใช้งาน",
+        });
+
+        return new Response(text || "AI returned no text");
     } catch (error) {
-        console.error("Diagnostic Error:", error);
-        return new Response(JSON.stringify({ error: (error as Error).message }), { status: 500 });
+        console.error("Chat API Error:", error);
+        return new Response(JSON.stringify({
+            error: (error as Error).message,
+            name: (error as any).name,
+            data: (error as any).data
+        }), { status: 500 });
     }
 }
