@@ -1,8 +1,13 @@
-import { google } from "@ai-sdk/google";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { generateText } from "ai";
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
+
+const google = createGoogleGenerativeAI({
+    apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+    baseURL: "https://generativelanguage.googleapis.com/v1",
+});
 
 export async function POST(req: Request) {
     if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
@@ -12,7 +17,7 @@ export async function POST(req: Request) {
     try {
         const { text } = await generateText({
             model: google("gemini-1.5-flash"),
-            prompt: "สวัสดีครับ ตอบสั้นๆ ว่าพร้อมใช้งาน",
+            prompt: "สวัสดีครับ",
         });
 
         return new Response(text || "AI returned no text");
