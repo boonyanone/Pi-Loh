@@ -1,12 +1,10 @@
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { generateText } from "ai";
+import { google } from "@ai-sdk/google";
+import { streamText } from "ai";
+import { SYSTEM_PROMPT } from "@/lib/ai/system-prompt";
+import { getRelevantKnowledge } from "@/lib/ai/knowledge";
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
-
-const google = createGoogleGenerativeAI({
-    apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
-});
 
 export async function POST(req: Request) {
     if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
@@ -14,19 +12,33 @@ export async function POST(req: Request) {
     }
 
     try {
-        const { text } = await generateText({
-            model: google("gemini-2.0-flash"),
-            prompt: "สวัสดีครับ ตอบสั้นๆ ว่าพร้อมใช้งาน (v11)",
+        const { messages } = await req.json();
+
+        // Map messages to ensure they match CoreMessage format expected by AI SDK
+        const coreMessages = messages.map((m: any) => {
+            // Handle both standard content and parts-based content from AI SDK
+            const content = m.content || m.parts?.filter((p: any) => p.type === 'text').map((p: any) => (p as any).text).join('') || '';
+            return {
+                role: m.role,
+                content: content
+            };
         });
 
-        return new Response(JSON.stringify({ version: "v11", text }));
+        const lastMessage = coreMessages[coreMessages.length - 1]?.content || "";
+        const context = getRelevantKnowledge(lastMessage);
+
+        const result = streamText({
+            model: google("gemini-1.5-flash-8b"),
+            system: SYSTEM_PROMPT + context,
+            messages: coreMessages,
+        });
+
+        return result.toDataStreamResponse();
     } catch (error) {
         console.error("Chat API Error:", error);
         return new Response(JSON.stringify({
-            version: "v11",
             error: (error as Error).message,
-            name: (error as any).name,
-            data: (error as any).data
+            stack: (error as Error).stack
         }), { status: 500 });
     }
 }
