@@ -1,9 +1,6 @@
 import { google } from "@ai-sdk/google";
-import { streamText } from "ai";
-import { SYSTEM_PROMPT } from "@/lib/ai/system-prompt";
-import { getRelevantKnowledge } from "@/lib/ai/knowledge";
+import { generateText } from "ai";
 
-// Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
@@ -13,33 +10,21 @@ export async function POST(req: Request) {
 
     try {
         const { messages } = await req.json();
+        const lastMessage = messages[messages.length - 1]?.content || "สวัสดี";
 
-        // Map messages to ensure they match CoreMessage format expected by AI SDK
-        const coreMessages = messages.map((m: any) => {
-            // Handle both standard content and parts-based content from AI SDK
-            const content = m.content || m.parts?.filter((p: any) => p.type === 'text').map((p: any) => (p as any).text).join('') || '';
-            return {
-                role: m.role,
-                content: content
-            };
-        });
-
-        const lastMessage = coreMessages[coreMessages.length - 1]?.content || "";
-        const context = getRelevantKnowledge(lastMessage);
-
-        const result = streamText({
+        const { text } = await generateText({
             model: google("gemini-1.5-flash"),
-            system: SYSTEM_PROMPT + context,
-            messages: coreMessages,
+            prompt: lastMessage,
         });
 
-        return result.toTextStreamResponse();
+        return new Response(JSON.stringify({ version: "v13", text }));
     } catch (error) {
         console.error("Chat API Error:", error);
         return new Response(JSON.stringify({
-            version: "v12",
+            version: "v13",
             error: (error as Error).message,
-            stack: (error as Error).stack
+            name: (error as any).name,
+            data: (error as any).data
         }), { status: 500 });
     }
 }
