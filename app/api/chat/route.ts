@@ -20,24 +20,26 @@ export async function POST(req: Request) {
         const lastMessage = coreMessages[coreMessages.length - 1]?.content || "";
         const context = getRelevantKnowledge(lastMessage);
 
-        // Try gemini-1.5-flash first (standard), fallback to flash-8b (higher quota)
-        const modelId = "gemini-1.5-flash";
-
+        // Version v15: Using gemini-1.5-flash-8b which often has better availability on limited keys
         const result = streamText({
-            model: google(modelId),
+            model: google("gemini-1.5-flash-8b"),
             system: SYSTEM_PROMPT + context,
             messages: coreMessages,
         });
 
-        // Use toTextStreamResponse as it's the one available in this version of the SDK 
-        // that matches the result object interface.
-        return result.toTextStreamResponse();
+        // Add cache control to prevent browser/CDN from serving old responses
+        const response = result.toTextStreamResponse();
+        response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+        return response;
     } catch (error) {
-        console.error("Chat API Error:", error);
+        console.error("Chat API v15 Error:", error);
         return new Response(JSON.stringify({
-            version: "v14",
+            version: "v15",
             error: (error as Error).message,
-            stack: (error as Error).stack
-        }), { status: 500 });
+            name: (error as any).name
+        }), {
+            status: 500,
+            headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
+        });
     }
 }
