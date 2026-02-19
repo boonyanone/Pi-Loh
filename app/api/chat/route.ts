@@ -6,29 +6,27 @@ export const maxDuration = 30;
 
 const google = createGoogleGenerativeAI({
     apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
-    baseURL: "https://generativelanguage.googleapis.com/v1beta",
 });
 
 export async function POST(req: Request) {
-    // VERSION: 10
     if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
         return new Response("Missing GOOGLE_GENERATIVE_AI_API_KEY", { status: 500 });
     }
 
-    try {
-        const { text } = await generateText({
-            model: google("gemini-1.5-flash-latest"),
-            prompt: "สวัสดีครับ ตอบสั้นๆ ว่าพร้อมใช้งาน (v10)",
-        });
+    const modelsToTry = ["gemini-1.5-flash", "gemini-1.5-flash-latest", "gemini-2.0-flash-exp", "gemini-pro"];
+    const errors: any[] = [];
 
-        return new Response(`(v10) ${text || "AI returned no text"}`);
-    } catch (error) {
-        console.error("Chat API Error:", error);
-        return new Response(JSON.stringify({
-            version: "v10",
-            error: (error as Error).message,
-            name: (error as any).name,
-            data: (error as any).data
-        }), { status: 500 });
+    for (const modelId of modelsToTry) {
+        try {
+            const { text } = await generateText({
+                model: google(modelId),
+                prompt: "สวัสดีครับ ตอบสั้นๆ ว่าโอเค",
+            });
+            return new Response(JSON.stringify({ model: modelId, text }));
+        } catch (e) {
+            errors.push({ model: modelId, error: (e as Error).message });
+        }
     }
+
+    return new Response(JSON.stringify({ errors }), { status: 500 });
 }
