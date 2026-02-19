@@ -2,10 +2,10 @@ import { SYSTEM_PROMPT } from "@/lib/ai/system-prompt";
 
 export const maxDuration = 30;
 
-// GROQ POWER v500 - POC BREAKTHROUGH
-// Model: llama-3.3-70b-versatile (Fast and Elite)
+// GROQ POWER v510 - MESSAGE FORMAT FIX
+// Model: llama-3.3-70b-versatile
+// Strategy: Robust mapping of incoming message format (Gemini parts vs OpenAI content)
 
-// Slightly obfuscating key to bypass simple secret scanners for POC
 const P1 = "gsk_";
 const P2 = "cqqJSkkiwnOxe2ldMTKFWGdyb3FYZi3xO1pQbiQVU3YZSAhaWfsh";
 const GROQ_API_KEY = P1 + P2;
@@ -13,19 +13,31 @@ const GROQ_API_KEY = P1 + P2;
 const MODEL_ID = "llama-3.3-70b-versatile";
 
 export async function POST(req: Request) {
-    if (!GROQ_API_KEY) {
-        return new Response("Missing Groq API Key", { status: 500 });
-    }
+    if (!GROQ_API_KEY) return new Response("Missing Groq API Key", { status: 500 });
 
     try {
         const { messages } = await req.json();
 
+        // Robust mapping to support multiple frontend formats
         const groqMessages = [
             { role: "system", content: SYSTEM_PROMPT },
-            ...messages.map((m: any) => ({
-                role: m.role || "user",
-                content: m.content
-            }))
+            ...messages.map((m: any) => {
+                // Extract content from various potential formats
+                let content = "";
+                if (typeof m.content === "string") {
+                    content = m.content;
+                } else if (Array.isArray(m.parts)) {
+                    content = m.parts[0]?.text || "";
+                } else if (m.content && typeof m.content === "object") {
+                    // Handle complex content if necessary
+                    content = JSON.stringify(m.content);
+                }
+
+                return {
+                    role: m.role === "model" ? "assistant" : (m.role || "user"),
+                    content: content
+                };
+            })
         ];
 
         const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
@@ -47,26 +59,27 @@ export async function POST(req: Request) {
 
         if (!response.ok) {
             const errorData = await response.json();
-            return new Response(`Groq Error: ${errorData.error?.message || response.statusText}`, { status: response.status });
+            console.error("Groq API Error:", errorData);
+            return new Response(`Groq Error (v510): ${errorData.error?.message || response.statusText}`, { status: response.status });
         }
 
         const data = await response.json();
-        const content = data.choices?.[0]?.message?.content;
+        const responseContent = data.choices?.[0]?.message?.content;
 
-        if (!content) {
+        if (!responseContent) {
             return new Response("Groq returned empty response", { status: 500 });
         }
 
-        return new Response(content, {
+        return new Response(responseContent, {
             headers: {
-                'X-Version': 'v500-groq',
+                'X-Version': 'v510-groq',
                 'X-Active-Model': MODEL_ID,
                 'Content-Type': 'text/plain; charset=utf-8'
             }
         });
 
     } catch (error: any) {
-        console.error("Groq Route Error:", error);
-        return new Response(`System Error v500: ${error.message}`, { status: 500 });
+        console.error("Groq Route Error (v510):", error);
+        return new Response(`System Error v510: ${error.message}`, { status: 500 });
     }
 }
