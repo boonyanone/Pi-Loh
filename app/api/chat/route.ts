@@ -8,6 +8,7 @@ export const maxDuration = 30;
 
 const google = createGoogleGenerativeAI({
     apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+    baseURL: "https://generativelanguage.googleapis.com/v1",
 });
 
 export async function POST(req: Request) {
