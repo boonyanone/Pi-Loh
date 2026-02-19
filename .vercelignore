@@ -1,0 +1,7 @@
+เอกสาร/
+node_modules/
+.next/
+out/
+build/
+.git/
+.vercel
