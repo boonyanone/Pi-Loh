@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>พี่โล่ - ตรวจสอบบัญชี AI (Professional Theme)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#197fe6",
+                        "navy-sidebar": "#0f172a",
+                        "content-bg": "#f8fafc",
+                        "border-light": "#e2e8f0",
+                        "text-main": "#1e293b",
+                        "text-muted": "#64748b",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Public Sans', sans-serif;
+            background-color: theme('colors.content-bg');
+            color: theme('colors.text-main');
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-link {
+            @apply flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200;
+        }
+        .sidebar-link-active {
+            @apply bg-primary text-white shadow-lg shadow-primary/20;
+        }
+        .sidebar-link-inactive {
+            @apply text-slate-400 hover:bg-white/5 hover:text-white;
+        }
+        .card-base {
+            @apply bg-white border border-border-light shadow-sm rounded-2xl;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex font-display overflow-x-hidden">
+<aside class="w-64 flex flex-col bg-navy-sidebar fixed h-full z-20">
+<div class="p-6 flex flex-col gap-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined text-2xl">shield_person</span>
+</div>
+<div>
+<h1 class="font-bold text-lg leading-tight text-white">พี่โล่ (Pee Lo)</h1>
+<p class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">AI Auditor</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1.5">
+<a class="sidebar-link sidebar-link-inactive" href="#">
+<span class="material-symbols-outlined text-[22px]">grid_view</span>
+<span class="text-sm font-medium">หน้าหลัก</span>
+</a>
+<a class="sidebar-link sidebar-link-inactive" href="#">
+<span class="material-symbols-outlined text-[22px]">description</span>
+<span class="text-sm font-medium">เอกสาร</span>
+</a>
+<a class="sidebar-link sidebar-link-active" href="#">
+<span class="material-symbols-outlined text-[22px]">fact_check</span>
+<span class="text-sm font-semibold">ตรวจสอบบัญชี</span>
+</a>
+<a class="sidebar-link sidebar-link-inactive" href="#">
+<span class="material-symbols-outlined text-[22px]">psychology</span>
+<span class="text-sm font-medium">ที่ปรึกษา AI</span>
+</a>
+<a class="sidebar-link sidebar-link-inactive" href="#">
+<span class="material-symbols-outlined text-[22px]">receipt_long</span>
+<span class="text-sm font-medium">ยื่นภาษี</span>
+</a>
+<a class="sidebar-link sidebar-link-inactive" href="#">
+<span class="material-symbols-outlined text-[22px]">storefront</span>
+<span class="text-sm font-medium">ตลาดผู้สอบบัญชี</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6">
+<div class="bg-white/5 rounded-xl p-4 border border-white/10">
+<div class="flex items-center gap-2 mb-2">
+<span class="text-[10px] font-black text-primary bg-primary/10 px-1.5 py-0.5 rounded">PRO</span>
+<p class="text-xs font-semibold text-white">Advanced Compliance</p>
+</div>
+<p class="text-[11px] text-slate-400 mb-4">เข้าถึงฟีเจอร์ตรวจภาษีเชิงลึกได้ไม่จำกัด</p>
+<button class="w-full py-2 bg-primary text-white text-xs font-bold rounded-lg hover:bg-primary/90 transition-all">อัปเกรดการใช้งาน</button>
+</div>
+</div>
+</aside>
+<main class="flex-1 ml-64 mr-80 bg-content-bg min-h-screen">
+<header class="h-16 border-b border-border-light flex items-center justify-between px-8 bg-white/80 backdrop-blur-md sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<nav class="flex text-sm text-text-muted">
+<span class="hover:text-primary cursor-pointer transition-colors">หน้าหลัก</span>
+<span class="mx-2 text-slate-300">/</span>
+<span class="text-text-main font-semibold">ตรวจสอบบัญชี AI</span>
+</nav>
+<span class="bg-emerald-50 text-emerald-600 text-[10px] px-2 py-0.5 rounded-full border border-emerald-100 flex items-center gap-1 uppercase font-bold">
+<span class="material-symbols-outlined text-[12px] font-bold">verified_user</span> Secured
+            </span>
+</div>
+<div class="flex items-center gap-5">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-text-muted cursor-pointer hover:text-text-main transition-colors">notifications</span>
+<span class="absolute -top-0.5 -right-0.5 w-2 h-2 bg-rose-500 rounded-full border-2 border-white"></span>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-border-light">
+<div class="text-right">
+<p class="text-xs font-bold text-text-main">สมชาย การบัญชี</p>
+<p class="text-[10px] text-text-muted italic">Accountant Manager</p>
+</div>
+<div class="w-9 h-9 rounded-full bg-slate-200 overflow-hidden border border-border-light shadow-sm">
+<img alt="User Profile" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpJeqnURYJaYOSttnsW0G5yCL8ruaaTTbjpWcBdrYByaGRd-xwghJkBf0BxdnOwo6UnEsPB3dKrJBnmBwUHdOXKKzzSN1LwA0JDjumRmMLxfU-MpA5XqyeCTzGOUlySs7_G36eXIWvssethXyo1q42-ktdC0uQZmwkY_Kk5VQTJE-b_Ug9tokUkFM0p41HOdS-pWOKNfDFys1WvP-Ae_rOneNtW77XvaQoCvHY8SpgY-RntHbaq82Brf8bDVwFlMlAK9K2iC2o_ss"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-10 max-w-5xl mx-auto">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="text-3xl font-black text-text-main mb-2 tracking-tight">ตรวจสอบความถูกต้องด้วย AI</h2>
+<p class="text-text-muted">สแกนหาความผิดปกติของสมุดบัญชีและเอกสารภาษีแบบ Real-time</p>
+</div>
+<button class="bg-primary text-white px-7 py-3.5 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/30 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+                เริ่มตรวจระบบ
+            </button>
+</div>
+<div class="grid grid-cols-3 gap-6 mb-10">
+<div class="card-base p-6">
+<div class="flex justify-between items-start mb-2">
+<p class="text-text-muted text-sm font-semibold uppercase tracking-wider">รายการที่ตรวจสอบ</p>
+<span class="material-symbols-outlined text-slate-300">visibility</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black text-text-main">1,240</span>
+<span class="text-emerald-500 text-xs font-bold bg-emerald-50 px-1.5 py-0.5 rounded">+12%</span>
+</div>
+</div>
+<div class="card-base p-6 border-rose-100 ring-4 ring-rose-500/5">
+<div class="flex justify-between items-start mb-2">
+<p class="text-text-muted text-sm font-semibold uppercase tracking-wider">พบจุดผิดปกติ</p>
+<span class="material-symbols-outlined text-rose-400">warning</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black text-rose-600">3</span>
+<span class="text-rose-600 text-xs font-bold">รายการ</span>
+</div>
+</div>
+<div class="card-base p-6">
+<div class="flex justify-between items-start mb-2">
+<p class="text-text-muted text-sm font-semibold uppercase tracking-wider">ความพร้อมปิดงบ</p>
+<span class="material-symbols-outlined text-slate-300">speed</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black text-text-main">85%</span>
+<span class="text-rose-400 text-xs font-bold bg-rose-50 px-1.5 py-0.5 rounded">-2.4%</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-text-main flex items-center gap-2">
+<span class="material-symbols-outlined text-rose-500 font-bold">priority_high</span>
+                    รายการความผิดปกติที่พบ (3)
+                </h3>
+<button class="text-sm text-primary font-bold flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-sm">download</span>
+                    ส่งออกเป็น PDF
+                </button>
+</div>
+<div class="card-base hover:border-primary/40 transition-all group">
+<div class="p-6">
+<div class="flex justify-between items-start">
+<div class="flex items-start gap-4">
+<div class="w-11 h-11 rounded-xl bg-rose-50 flex items-center justify-center text-rose-500 flex-shrink-0 group-hover:bg-rose-100 transition-colors">
+<span class="material-symbols-outlined">receipt</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1.5">
+<h4 class="font-bold text-text-main text-base">VAT mismatched (ภาษีซื้อไม่ตรง)</h4>
+<span class="px-2 py-0.5 bg-rose-100 text-rose-600 text-[10px] font-black uppercase rounded-md tracking-tighter">High Severity</span>
+</div>
+<p class="text-sm text-text-muted leading-relaxed">ตรวจพบยอดภาษีมูลค่าเพิ่มในแบบ ภ.พ.30 ของเดือน ส.ค. ไม่ตรงกับรายการในสมุดรายวันซื้อ (ส่วนต่าง <span class="font-bold text-text-main">2,450.00 THB</span>)</p>
+</div>
+</div>
+<div class="flex gap-2 shrink-0 ml-4">
+<button class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-xs font-bold hover:bg-slate-200 transition-colors">ถาม AI</button>
+<button class="px-4 py-2 bg-primary text-white rounded-lg text-xs font-bold hover:bg-primary/90 shadow-md shadow-primary/20 transition-all">แก้ไขทันที</button>
+</div>
+</div>
+</div>
+</div>
+<div class="card-base hover:border-primary/40 transition-all group">
+<div class="p-6">
+<div class="flex justify-between items-start">
+<div class="flex items-start gap-4">
+<div class="w-11 h-11 rounded-xl bg-amber-50 flex items-center justify-center text-amber-500 flex-shrink-0 group-hover:bg-amber-100 transition-colors">
+<span class="material-symbols-outlined">content_copy</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1.5">
+<h4 class="font-bold text-text-main text-base">Duplicate Invoice (พบรายการซ้ำ)</h4>
+<span class="px-2 py-0.5 bg-amber-100 text-amber-600 text-[10px] font-black uppercase rounded-md tracking-tighter">Medium</span>
+</div>
+<p class="text-sm text-text-muted leading-relaxed">ใบแจ้งหนี้เลขที่ INV-2023-089 มียอดเงินและผู้ขายตรงกับรายการที่มีอยู่แล้วในระบบ อาจเป็นการบันทึกซ้ำ</p>
+</div>
+</div>
+<div class="flex gap-2 shrink-0 ml-4">
+<button class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-xs font-bold hover:bg-slate-200 transition-colors">ถาม AI</button>
+<button class="px-4 py-2 bg-primary text-white rounded-lg text-xs font-bold hover:bg-primary/90 transition-all">ตรวจสอบ</button>
+</div>
+</div>
+</div>
+</div>
+<div class="card-base hover:border-primary/40 transition-all group">
+<div class="p-6">
+<div class="flex justify-between items-start">
+<div class="flex items-start gap-4">
+<div class="w-11 h-11 rounded-xl bg-slate-100 flex items-center justify-center text-slate-500 flex-shrink-0 group-hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">category</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1.5">
+<h4 class="font-bold text-text-main text-base">Missing Category (ไม่ระบุหมวดหมู่)</h4>
+<span class="px-2 py-0.5 bg-slate-200 text-slate-600 text-[10px] font-black uppercase rounded-md tracking-tighter">Low</span>
+</div>
+<p class="text-sm text-text-muted leading-relaxed">พบ 15 รายการค่าใช้จ่ายที่ยังไม่ได้ระบุหมวดหมู่บัญชีผัง (Chart of Accounts) สำหรับการปิดงบ</p>
+</div>
+</div>
+<div class="flex gap-2 shrink-0 ml-4">
+<button class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-xs font-bold hover:bg-slate-200 transition-colors">ถาม AI</button>
+<button class="px-4 py-2 bg-primary text-white rounded-lg text-xs font-bold hover:bg-primary/90 transition-all">จัดหมวดหมู่</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<aside class="w-80 border-l border-border-light flex flex-col bg-white fixed right-0 h-full z-20">
+<div class="p-8 overflow-y-auto">
+<h3 class="text-[11px] font-black text-text-muted mb-8 uppercase tracking-[0.2em] border-b border-slate-50 pb-2">Status Report</h3>
+<div class="flex flex-col items-center mb-10">
+<div class="relative w-44 h-44">
+<svg class="w-full h-full transform -rotate-90 drop-shadow-sm">
+<circle class="text-slate-100" cx="88" cy="88" fill="transparent" r="76" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary" cx="88" cy="88" fill="transparent" r="76" stroke="currentColor" stroke-dasharray="477.5" stroke-dashoffset="71.6" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-5xl font-black text-text-main leading-none">85</span>
+<span class="text-[10px] font-black text-emerald-500 mt-1 uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded-full">Good State</span>
+</div>
+</div>
+<p class="mt-5 font-bold text-text-main text-lg">คะแนนความพร้อมปิดงบ</p>
+<p class="text-[11px] text-text-muted mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                อัปเดตล่าสุด: เมื่อ 5 นาทีที่แล้ว
+            </p>
+</div>
+<div class="space-y-6">
+<h4 class="text-[10px] font-black text-text-main uppercase tracking-widest border-b border-border-light pb-2">Checklist ปิดงบ</h4>
+<div class="space-y-5">
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-white flex-shrink-0 shadow-sm shadow-emerald-200">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<div>
+<p class="text-sm font-bold text-text-main leading-tight">ยื่นแบบ ภ.พ.30 เรียบร้อย</p>
+<p class="text-[11px] text-text-muted mt-0.5">ตรวจสอบความถูกต้องแล้วโดย AI</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-white flex-shrink-0 shadow-sm shadow-emerald-200">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<div>
+<p class="text-sm font-bold text-text-main leading-tight">กระทบยอดธนาคาร (Bank Recon)</p>
+<p class="text-[11px] text-text-muted mt-0.5">ครบถ้วนทั้ง 3 บัญชีหลัก</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 border border-primary/20">
+<span class="material-symbols-outlined text-[16px] font-bold">pending</span>
+</div>
+<div>
+<p class="text-sm font-bold text-text-main leading-tight">ตรวจสอบสต็อกสินค้าปลายงวด</p>
+<p class="text-[11px] text-text-muted italic mt-0.5">รอดำเนินการ (AI ไม่พบข้อมูล)</p>
+</div>
+</div>
+<div class="flex items-start gap-3 opacity-40">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] font-bold">circle</span>
+</div>
+<div>
+<p class="text-sm font-bold text-text-main leading-tight">คำนวณภาษีเงินได้นิติบุคคล</p>
+<p class="text-[11px] text-text-muted mt-0.5">ขั้นตอนสุดท้าย</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 p-4 bg-slate-50 rounded-xl border border-border-light flex items-center gap-3">
+<span class="material-symbols-outlined text-text-muted text-[20px]">shield_lock</span>
+<p class="text-[10px] text-text-muted leading-relaxed">
+                ข้อมูลได้รับการปกป้องด้วย 256-bit AES <br/>
+<span class="font-bold text-text-main">Encrypted by พี่โล่ Security</span>
+</p>
+</div>
+</div>
+</aside>
+
+</body></html>

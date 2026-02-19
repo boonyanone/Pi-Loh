@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>พี่โล่ - ตลาดผู้สอบบัญชี (Auditor Marketplace)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#197fe6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "Noto Sans Thai", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-nav { border-right: 4px solid #197fe6; background-color: rgba(25, 127, 230, 0.08); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418]">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-72 bg-white dark:bg-background-dark border-r border-gray-200 dark:border-gray-800 flex flex-col fixed h-full">
+<div class="p-6 flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">shield_person</span>
+</div>
+<div>
+<h1 class="text-lg font-bold text-[#111418] dark:text-white leading-tight">พี่โล่ (Pee-Lo)</h1>
+<p class="text-xs text-gray-500 dark:text-gray-400">AI Accounting Assistant</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">home</span>
+<span class="text-sm font-medium">หน้าหลัก</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">description</span>
+<span class="text-sm font-medium">เอกสาร</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">fact_check</span>
+<span class="text-sm font-medium">ตรวจสอบบัญชี</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">smart_toy</span>
+<span class="text-sm font-medium">ที่ปรึกษา AI</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">receipt_long</span>
+<span class="text-sm font-medium">ยื่นภาษี</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary active-nav" href="#">
+<span class="material-symbols-outlined text-[22px] fill-current">storefront</span>
+<span class="text-sm font-bold">ตลาดผู้สอบบัญชี</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6">
+<div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+<p class="text-xs text-gray-500 dark:text-gray-400 mb-2">บัญชีของคุณ</p>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gray-300 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARzjGUbI1Dr3g89R6q-3M4kSdSNo6hKLi35rQKc2bqCi7rk6Af06GoeCkUNgjEFfr7jRJP3mfbz9FIbE8_AVB-mavthRS1V9dWByZYQWdYxMBeqmnm7faFHli-9DYFYe8TlCYwREm_uyEf-Xhb9B73Q17dAHsVKjiIb24HRGtq1xuYe3tVDzmUhqhtjaTWL_LPrhdL-2uDqsQX8PjIxD9qZXKty8i-jDioQl_NqO-3JDfWnMa_OlE1ULmWMSVxaeByG9O29qxMg54"/>
+</div>
+<div class="overflow-hidden">
+<p class="text-sm font-semibold truncate dark:text-white">บริษัท มีสุข จำกัด</p>
+<p class="text-[10px] text-gray-400">SME Member</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-72 flex-1 flex flex-col">
+<!-- Header Section -->
+<header class="p-8 bg-white dark:bg-background-dark border-b border-gray-100 dark:border-gray-800 flex justify-between items-end">
+<div>
+<nav class="text-xs text-gray-400 mb-2 flex items-center gap-2">
+<span>แอป</span> <span class="material-symbols-outlined text-[12px]">chevron_right</span> <span>ตลาดผู้สอบบัญชี</span>
+</nav>
+<h2 class="text-3xl font-black tracking-tight dark:text-white">ตลาดผู้สอบบัญชี (Unified Marketplace)</h2>
+<div class="mt-2 flex items-center gap-2 text-primary font-medium">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<p class="text-sm">ระบบเตรียมข้อมูลพร้อมสำหรับการปิดงบแล้ว AI ตรวจสอบความถูกต้องเรียบร้อย</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-sm font-bold rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">history</span> ประวัติการเสนอราคา
+                </button>
+</div>
+</header>
+<!-- Search & Filter Bar -->
+<div class="px-8 py-4 flex gap-4 overflow-x-auto no-scrollbar border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-background-dark sticky top-0 z-10">
+<button class="flex items-center gap-2 px-4 py-1.5 bg-primary text-white rounded-full text-sm font-medium">ทั้งหมด</button>
+<button class="flex items-center gap-2 px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200">
+<span class="material-symbols-outlined text-[18px]">factory</span> การผลิต
+            </button>
+<button class="flex items-center gap-2 px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200">
+<span class="material-symbols-outlined text-[18px]">shopping_cart</span> E-commerce
+            </button>
+<button class="flex items-center gap-2 px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200">
+<span class="material-symbols-outlined text-[18px]">medical_services</span> บริการสุขภาพ
+            </button>
+<button class="flex items-center gap-2 px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200">
+<span class="material-symbols-outlined text-[18px]">real_estate_agent</span> อสังหาริมทรัพย์
+            </button>
+<div class="ml-auto flex items-center border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-1 bg-gray-50 dark:bg-gray-800">
+<span class="material-symbols-outlined text-[20px] text-gray-400">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 py-1" placeholder="ค้นหาตามชื่อ หรือ ความเชี่ยวชาญ..." type="text"/>
+</div>
+</div>
+<div class="flex flex-1 overflow-hidden">
+<!-- Grid of Auditors -->
+<section class="flex-1 p-8 overflow-y-auto">
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+<!-- Auditor Card 1 -->
+<div class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="p-6">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-lg bg-gray-100 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Auditor firm logo or headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyQ11X8Mi7kFuaS_jslH5Be317Iphiu6n6_JC5xWrv-H8yVsyc5bkECKvncoJCUtC_sdVvzsBUP5-S2X8GAVcuYe6e17qJSrKZLb2_855KwVhEvXSZdh1fV4PCeRFu7x0aag17uZP61AcLzxaOqTar7HOD-iAQGIyaHkfOu8e2lfLa5CMasLlVswaHOFvGdsWrk1D-DBYQv1SxdyhYF6Uog_llFu9btRzc_A9iY0pmdiOkTOlq99cx5eeTY0k-Y3VuExod7SeqVAo"/>
+</div>
+<div>
+<h3 class="font-bold text-lg dark:text-white">บริษัท ตรวจสอบบัญชี เอสเอ็มอี จำกัด</h3>
+<div class="flex items-center gap-1 mt-1 text-yellow-500">
+<span class="material-symbols-outlined text-[18px] fill-current">star</span>
+<span class="text-sm font-bold text-gray-700 dark:text-gray-200">4.9</span>
+<span class="text-xs text-gray-400 font-normal ml-1">(120 รีวิว)</span>
+</div>
+</div>
+</div>
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold px-2 py-1 rounded-full flex items-center gap-1 uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Ready for closing
+                                </span>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="text-[11px] font-medium px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">เชี่ยวชาญ: การผลิต</span>
+<span class="text-[11px] font-medium px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">ค้าปลีก</span>
+<span class="text-[11px] font-medium px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">ประสบการณ์ 10 ปี</span>
+</div>
+<p class="mt-4 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+                                ให้บริการตรวจสอบบัญชีคุณภาพสูงโดยผู้สอบบัญชีรับอนุญาต (CPA) เน้นความถูกต้องตามมาตรฐานการรายงานทางการเงิน...
+                            </p>
+<div class="mt-6 flex items-center justify-between pt-4 border-t border-gray-50 dark:border-gray-800">
+<div class="flex items-center gap-2 text-xs text-gray-400">
+<span class="material-symbols-outlined text-[16px]">lock</span> เฉพาะข้อมูลที่จำเป็นจะถูกแชร์
+                                </div>
+<button class="bg-primary text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">send</span> ส่งข้อมูลเพื่อขอเสนอราคา
+                                </button>
+</div>
+</div>
+</div>
+<!-- Auditor Card 2 -->
+<div class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="p-6">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-lg bg-gray-100 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Auditor firm logo or headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTuHMH0khlRvvbeNqEPPHSPnflMR23xMlSG3F8mEqnh3KfdZoFcj_Q42u-Yr-2b5iUWgFkEjMbmq6YnK3pFuu_XKSdQeo5l0IRpV3DcUUzMD2mu39CcKq8UZMazuu5d5I_JWdlzuZoU2QTy-XKAblR2DqL8Ie4GMYc9h0QAbaD1JN9rrtFTjz7vMip8wZN1P7uWVdCVOfAHloAilm189tNMfIUu4qa-SN3lGUOUr2wlrW_LSuY5vWyKW1BD4igfbTbGdphPAafwxw"/>
+</div>
+<div>
+<h3 class="font-bold text-lg dark:text-white">สำนักงานบัญชี พีระพล และเพื่อน</h3>
+<div class="flex items-center gap-1 mt-1 text-yellow-500">
+<span class="material-symbols-outlined text-[18px] fill-current">star</span>
+<span class="text-sm font-bold text-gray-700 dark:text-gray-200">4.7</span>
+<span class="text-xs text-gray-400 font-normal ml-1">(45 รีวิว)</span>
+</div>
+</div>
+</div>
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold px-2 py-1 rounded-full flex items-center gap-1 uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Ready for closing
+                                </span>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="text-[11px] font-medium px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">เชี่ยวชาญ: E-commerce</span>
+<span class="text-[11px] font-medium px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">บริการ</span>
+<span class="text-[11px] font-medium px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">ประสบการณ์ 5 ปี</span>
+</div>
+<p class="mt-4 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+                                พร้อมดูแลธุรกิจออนไลน์ และ Startup ด้วยระบบ Digital Audit รวดเร็ว ตรวจสอบได้ทุกที่...
+                            </p>
+<div class="mt-6 flex items-center justify-between pt-4 border-t border-gray-50 dark:border-gray-800">
+<div class="flex items-center gap-2 text-xs text-gray-400">
+<span class="material-symbols-outlined text-[16px]">lock</span> ปลอดภัยและเป็นส่วนตัว
+                                </div>
+<button class="bg-primary text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">send</span> ส่งข้อมูลเพื่อขอเสนอราคา
+                                </button>
+</div>
+</div>
+</div>
+<!-- Auditor Card 3 -->
+<div class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="p-6">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-lg bg-gray-100 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Auditor firm logo or headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBr9hLJZDAdscx9_ENY8LtHHC-x55ibTnjTwm5yRqmc5rl6fyIcbXmrtp9zj8hy9aeRRJd89V0daI0IIdVC5OuVY7KjtmQ2NGbBBDbTHVP56EQCquvs5YZM6KHsR3CSjR0pz8JbrLs5Fbl1hQ1lRzdAbJbjb_uSlyaO7tIqloV2b3Ci_jUehqEqXzHR-BYwa7JootI_q7qwzbvk-oqd4aP8wKUccquZIvvIgS5bYuZcFrpkAOeI52kuWCpCpSMfG02zb_VOAgX23I"/>
+</div>
+<div>
+<h3 class="font-bold text-lg dark:text-white">เอ แอนด์ เจ ออดิทติ้ง</h3>
+<div class="flex items-center gap-1 mt-1 text-yellow-500">
+<span class="material-symbols-outlined text-[18px] fill-current">star</span>
+<span class="text-sm font-bold text-gray-700 dark:text-gray-200">4.8</span>
+<span class="text-xs text-gray-400 font-normal ml-1">(82 รีวิว)</span>
+</div>
+</div>
+</div>
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold px-2 py-1 rounded-full flex items-center gap-1 uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Ready for closing
+                                </span>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="text-[11px] font-medium px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">เชี่ยวชาญ: บริการ</span>
+<span class="text-[11px] font-medium px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">อสังหาฯ</span>
+<span class="text-[11px] font-medium px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">ประสบการณ์ 8 ปี</span>
+</div>
+<p class="mt-4 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+                                เชี่ยวชาญธุรกิจอสังหาริมทรัพย์และก่อสร้าง เข้าใจโครงสร้างต้นทุนที่ซับซ้อน มั่นใจในคุณภาพการตรวจสอบ...
+                            </p>
+<div class="mt-6 flex items-center justify-between pt-4 border-t border-gray-50 dark:border-gray-800">
+<div class="flex items-center gap-2 text-xs text-gray-400">
+<span class="material-symbols-outlined text-[16px]">lock</span> ปลอดภัยและเป็นส่วนตัว
+                                </div>
+<button class="bg-primary text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">send</span> ส่งข้อมูลเพื่อขอเสนอราคา
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Notice Banner -->
+<div class="mt-12 p-6 bg-primary/5 border border-primary/20 rounded-2xl flex items-center gap-5">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[28px]">security</span>
+</div>
+<div>
+<h4 class="font-bold text-primary">นโยบายความเป็นส่วนตัว (Privacy Notice)</h4>
+<p class="text-sm text-gray-600 dark:text-gray-400">
+                            ข้อมูลทางการเงินของคุณจะถูกเข้ารหัสและแชร์เฉพาะกับผู้สอบบัญชีที่คุณเลือกเท่านั้น ข้อมูลที่แชร์จะจำกัดเฉพาะที่จำเป็นสำหรับการประเมินราคา (เช่น รายได้รวม, จำนวนรายการค้า) พี่โล่รับประกันความปลอดภัยสูงสุดของข้อมูลธุรกิจคุณ
+                        </p>
+</div>
+</div>
+</section>
+<!-- Right Sidebar: Steps -->
+<aside class="w-80 bg-white dark:bg-background-dark border-l border-gray-100 dark:border-gray-800 p-8 flex flex-col gap-6 overflow-y-auto">
+<h3 class="font-bold text-lg dark:text-white">ขั้นตอนการปิดงบ</h3>
+<div class="flex flex-col gap-8 relative before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-gray-100 dark:before:bg-gray-800">
+<!-- Step 1 -->
+<div class="flex gap-4 relative">
+<div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<div>
+<p class="text-sm font-bold dark:text-white">อัปโหลดเอกสารครบถ้วน</p>
+<p class="text-xs text-gray-400 mt-0.5">เรียบร้อยแล้วเมื่อ 2 ก.พ.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex gap-4 relative">
+<div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<div>
+<p class="text-sm font-bold dark:text-white">AI ตรวจสอบความถูกต้อง</p>
+<p class="text-xs text-gray-400 mt-0.5">ผ่านเกณฑ์ความพร้อม 98%</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex gap-4 relative">
+<div class="w-6 h-6 rounded-full border-2 border-primary bg-white dark:bg-background-dark flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">เลือกผู้สอบบัญชี</p>
+<p class="text-xs text-primary/60 mt-0.5">กำลังดำเนินการ (ขั้นตอนนี้)</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex gap-4 relative opacity-40">
+<div class="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center z-10">
+<span class="text-[10px] font-bold text-gray-500">4</span>
+</div>
+<div>
+<p class="text-sm font-bold">เริ่มการตรวจสอบบัญชี</p>
+<p class="text-xs text-gray-400 mt-0.5">รอยืนยันใบเสนอราคา</p>
+</div>
+</div>
+</div>
+<div class="mt-auto bg-gray-50 dark:bg-gray-800 p-4 rounded-xl border border-dashed border-gray-300 dark:border-gray-700">
+<p class="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-widest mb-3">สรุปข้อมูลความพร้อม</p>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-xs">
+<span class="text-gray-500">เอกสารทั้งหมด:</span>
+<span class="font-bold dark:text-white">142 รายการ</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-gray-500">ความพร้อมทางบัญชี:</span>
+<span class="font-bold text-green-500">ดีมาก</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-gray-500">ปีงบประมาณ:</span>
+<span class="font-bold dark:text-white">2566</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</body></html>

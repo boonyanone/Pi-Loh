@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>พี่โล่ - ศูนย์รวมเอกสาร (Unified Document Center)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#197fe6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav {
+            background-color: #197fe6;
+            color: white !important;
+        }
+        .active-nav span, .active-nav p {
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-72 bg-white border-r border-slate-200 flex flex-col h-full">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-2xl">shield</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-slate-800">พี่โล่</h1>
+<p class="text-xs text-slate-500 font-medium">Unified Document Center</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">home</span>
+<p class="text-sm font-medium">หน้าหลัก</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 active-nav rounded-lg shadow-sm shadow-primary/30 transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+<p class="text-sm font-medium">เอกสาร</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">fact_check</span>
+<p class="text-sm font-medium">ตรวจสอบบัญชี</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">smart_toy</span>
+<p class="text-sm font-medium">ที่ปรึกษา AI</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">percent</span>
+<p class="text-sm font-medium">ยื่นภาษี</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">storefront</span>
+<p class="text-sm font-medium">ตลาดผู้สอบบัญชี</p>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-100">
+<div class="flex items-center gap-3 p-2 bg-slate-50 rounded-xl">
+<div class="w-10 h-10 rounded-full bg-slate-200 bg-cover bg-center" data-alt="User profile photo showing a professional male" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAbUNR5xX0l7C-YeG4TV5H7BeEjO1kcdgW1p9BCADJOdjczoW-d7AAhSTXea6ez2IWbMut6YQgHmZeHrEcwjpJLs5Ja9aG4DZbktKG8hrUjr5ZC-e-zm_TkduL1ywZuIBkREoeajSyLTIeYyQ_mUOkEFZu-usNqOE4kkl3__AodPT0OzKuM5eupQPmdFojEs2QR-qrnm77zfEN0vkbX3EFwdOk8-h02b1eKPPeemR43RkiFKEIu6-6_Zk1xpC8wrrBX1qd6t1Dqgc0')"></div>
+<div class="flex-1 overflow-hidden">
+<p class="text-sm font-semibold text-slate-800 truncate">คุณสมชาย ธุรกิจไทย</p>
+<p class="text-xs text-slate-500 truncate">เจ้าของกิจการ SME</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-sm">settings</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden relative">
+<!-- Top Header Area -->
+<header class="h-20 bg-white border-b border-slate-200 px-8 flex items-center justify-between">
+<div>
+<h2 class="text-2xl font-bold text-slate-800 tracking-tight">ศูนย์รวมเอกสาร</h2>
+<p class="text-sm text-slate-500">อัปโหลดและจัดการเอกสารบัญชีของคุณด้วยระบบ AI</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<button class="bg-primary text-white px-5 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-primary/90 transition-all shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>อัปโหลดใหม่</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8 bg-slate-50/50">
+<div class="grid grid-cols-12 gap-8">
+<!-- Left: Upload & Document List -->
+<div class="col-span-12 lg:col-span-8 space-y-8">
+<!-- Drag & Drop Area -->
+<div class="bg-white rounded-xl border-2 border-dashed border-slate-200 p-12 text-center group hover:border-primary transition-colors cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 flex flex-col items-center gap-4">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">upload_file</span>
+</div>
+<div>
+<p class="text-lg font-bold text-slate-800">ลากและวางไฟล์ที่นี่</p>
+<p class="text-sm text-slate-500 mt-1">รองรับไฟล์ Excel, รูปภาพใบเสร็จ และ PDF (สูงสุด 50MB)</p>
+</div>
+<button class="mt-2 px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-bold transition-all">
+                                    เลือกไฟล์จากเครื่อง
+                                </button>
+</div>
+</div>
+<!-- Document List Section -->
+<div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+<h3 class="font-bold text-slate-800">รายการเอกสารล่าสุด</h3>
+<div class="flex gap-2">
+<div class="relative">
+<input class="pl-9 pr-4 py-2 border-slate-200 rounded-lg text-sm w-64 focus:ring-primary focus:border-primary" placeholder="ค้นหาเอกสาร..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-sm">search</span>
+</div>
+<button class="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 text-slate-500">
+<span class="material-symbols-outlined text-xl">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50/50 text-slate-500 text-xs font-semibold uppercase tracking-wider">
+<tr>
+<th class="px-6 py-4">ชื่อไฟล์</th>
+<th class="px-6 py-4">ประเภท</th>
+<th class="px-6 py-4">สถานะ</th>
+<th class="px-6 py-4">หมวดหมู่</th>
+<th class="px-6 py-4 text-right">การจัดการ</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-sm">
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+<span class="font-medium text-slate-800">INV-2023-001.pdf</span>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-500">ใบกำกับภาษี</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold">
+<span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+                                                    Processed
+                                                </span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-lg bg-primary/10 text-primary text-xs font-bold">ค่ารับรอง</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-slate-600 px-2"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="text-slate-400 hover:text-slate-600 px-2"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-amber-500">image</span>
+<span class="font-medium text-slate-800">Receipt-711-Main.jpg</span>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-500">ใบเสร็จรับเงิน</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold">
+<span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+                                                    Processed
+                                                </span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-lg bg-orange-100 text-orange-700 text-xs font-bold flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-[10px]">auto_awesome</span>
+                                                    ภาษีซื้อต้องห้าม
+                                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-slate-600 px-2"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="text-slate-400 hover:text-slate-600 px-2"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600">table_view</span>
+<span class="font-medium text-slate-800">Sales-Report-Q4.xlsx</span>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-500">รายงาน Excel</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-100 text-red-700 text-xs font-bold">
+<span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                                                    Error
+                                                </span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-500 text-xs font-bold">ยังไม่ระบุ</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:underline font-bold text-xs px-2">แก้ไขข้อผิดพลาด</button>
+<button class="text-slate-400 hover:text-slate-600 px-2"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+<span class="font-medium text-slate-800">Electricity-Bill-Oct.pdf</span>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-500">บิลค่าสาธารณูปโภค</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">
+<span class="w-1.5 h-1.5 bg-primary/50 rounded-full animate-pulse"></span>
+                                                    Processing...
+                                                </span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-400 text-xs font-bold">วิเคราะห์...</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-300 cursor-not-allowed px-2" disabled=""><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="text-slate-400 hover:text-slate-600 px-2"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-slate-100 flex items-center justify-between text-sm text-slate-500 bg-slate-50/30">
+<span>แสดง 4 จากทั้งหมด 128 รายการ</span>
+<div class="flex gap-2">
+<button class="p-2 border border-slate-200 rounded-lg hover:bg-white disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="px-3.5 py-1 border border-primary bg-primary text-white rounded-lg">1</button>
+<button class="px-3.5 py-1 border border-slate-200 rounded-lg hover:bg-white">2</button>
+<button class="px-3.5 py-1 border border-slate-200 rounded-lg hover:bg-white">3</button>
+<button class="p-2 border border-slate-200 rounded-lg hover:bg-white">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: AI Category Panel -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+<h3 class="font-bold text-slate-800">หมวดหมู่อัตโนมัติ (AI)</h3>
+</div>
+<p class="text-xs text-slate-500 mb-4 font-medium uppercase tracking-wider">ตรวจสอบล่าสุด</p>
+<div class="space-y-3">
+<div class="p-4 rounded-xl bg-orange-50 border border-orange-100 flex justify-between items-center group cursor-pointer hover:bg-orange-100 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-orange-200/50 rounded-lg flex items-center justify-center text-orange-700">
+<span class="material-symbols-outlined">block</span>
+</div>
+<div>
+<p class="text-sm font-bold text-orange-900">ภาษีซื้อต้องห้าม</p>
+<p class="text-xs text-orange-700">8 รายการต้องการการยืนยัน</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-orange-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<div class="p-4 rounded-xl bg-blue-50 border border-blue-100 flex justify-between items-center group cursor-pointer hover:bg-blue-100 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-blue-200/50 rounded-lg flex items-center justify-center text-blue-700">
+<span class="material-symbols-outlined">wine_bar</span>
+</div>
+<div>
+<p class="text-sm font-bold text-blue-900">ค่ารับรอง</p>
+<p class="text-xs text-blue-700">24 รายการในเดือนนี้</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-blue-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex justify-between items-center group cursor-pointer hover:bg-slate-200 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-slate-200/50 rounded-lg flex items-center justify-center text-slate-600">
+<span class="material-symbols-outlined">category</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-800">หมวดหมู่อื่นๆ</p>
+<p class="text-xs text-slate-500">จัดกลุ่มสำเร็จ 96%</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+<button class="w-full mt-6 py-3 text-sm font-bold text-primary hover:bg-primary/5 rounded-lg transition-colors">
+                                ดูรายงานวิเคราะห์ AI ทั้งหมด
+                            </button>
+</div>
+<!-- Statistics Card -->
+<div class="bg-primary rounded-xl p-6 text-white shadow-lg shadow-primary/20 relative overflow-hidden group">
+<div class="absolute -right-10 -bottom-10 opacity-10 group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[180px]">receipt_long</span>
+</div>
+<div class="relative z-10">
+<p class="text-primary-foreground/80 text-sm font-medium">สรุปค่าใช้จ่ายเดือนนี้</p>
+<h4 class="text-3xl font-black mt-1">฿ 142,500.00</h4>
+<div class="mt-6 flex items-center gap-2 text-sm bg-white/10 w-fit px-3 py-1 rounded-full border border-white/20">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span>+12.5% เทียบกับเดือนก่อน</span>
+</div>
+</div>
+</div>
+<!-- Help Widget -->
+<div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-slate-600">contact_support</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 text-sm">ต้องการความช่วยเหลือ?</h4>
+<p class="text-xs text-slate-500 mt-1 leading-relaxed">ปรึกษาเรื่องภาษีหรือการใช้งานกับทีมงานผู้เชี่ยวชาญของพี่โล่ได้ตลอดเวลา</p>
+<a class="inline-block mt-3 text-xs font-bold text-primary hover:underline" href="#">คุยกับผู้ช่วย AI</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Security Sticky Bar -->
+<footer class="bg-slate-900 text-slate-400 py-3 px-8 flex items-center justify-between z-20">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-lg">verified_user</span>
+<span class="text-xs font-medium">ข้อมูลของคุณถูกเข้ารหัส (AES-256) และปลอดภัย 100%</span>
+</div>
+<div class="h-4 w-px bg-slate-700"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">privacy_tip</span>
+<span class="text-xs font-medium">สอดคล้องตามมาตรฐาน PDPA ของไทย</span>
+</div>
+</div>
+<div class="text-[10px] flex items-center gap-4 uppercase tracking-widest font-bold">
+<span class="hover:text-white cursor-pointer transition-colors">นโยบายความเป็นส่วนตัว</span>
+<span class="hover:text-white cursor-pointer transition-colors">เงื่อนไขการใช้งาน</span>
+<span class="text-slate-600">v2.4.0 (AI Engine)</span>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>พี่โล่ (Pee-Lo) - การยื่นภาษี (Unified Tax Manager)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#197fe6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav {
+            background-color: rgba(25, 127, 230, 0.1);
+            color: #197fe6;
+            border-right: 4px solid #197fe6;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418]">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col justify-between">
+<div class="flex flex-col gap-2 py-6">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="bg-primary size-10 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight">พี่โล่ (Pee-Lo)</h1>
+<p class="text-xs text-gray-500">Tax Assistant for SMEs</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1 px-3">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-sm font-medium">หน้าหลัก</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-sm font-medium">เอกสาร</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span class="text-sm font-medium">ตรวจสอบบัญชี</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="text-sm font-medium">ที่ปรึกษา AI</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg active-nav" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">calculate</span>
+<span class="text-sm font-bold">ยื่นภาษี</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-sm font-medium">ตลาดผู้สอบบัญชี</span>
+</a>
+</nav>
+</div>
+<div class="p-4 border-t border-gray-100">
+<div class="flex items-center gap-3 p-2 bg-gray-50 rounded-xl">
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="User profile picture of a business owner" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC9XSm_2EsoMmrs_swQrRI-W4v2333xz4rfpo4gu9Pgre0iwRoUFk7qNoxJuCkigvEnp9jpOZ09ebJ9WtA-l5xMMXIEXo4STWyx2zeKpKXPCcxgQC7StherJdGDPmvqgq1ekKO6P45ClpmNhyaSkRbnMqC6DcMw2t1jtUURQzSE83HQniXsXPAGmu9Ut8He3gkoui1xmDs_jEn0HItWNtsuXE4xdcc7MCvwwPy2RQpe17vKYBxl9wLfPkPlCSiIbVsxTMa73-E6_e8')"></div>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate">บริษัท สมใจนึก จำกัด</p>
+<p class="text-xs text-gray-500">SME Plan</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Header -->
+<header class="h-16 border-b border-gray-200 bg-white flex items-center justify-between px-8 sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-bold">การจัดการภาษี</h2>
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">ประจำเดือน พฤศจิกายน 2566</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary cursor-pointer">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-white"></span>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined text-sm">download</span>
+                        ดาวน์โหลดแบบพร้อมยื่น
+                    </button>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<!-- Status Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- ภ.พ.30 -->
+<div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-lg">ภ.พ.30</h3>
+<p class="text-xs text-gray-500">ภาษีมูลค่าเพิ่ม (VAT)</p>
+</div>
+<span class="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded uppercase">เสร็จสมบูรณ์</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<p class="text-sm text-gray-500 mb-1">ยอดภาษีที่ต้องชำระ</p>
+<p class="text-2xl font-black text-primary">12,450.00 ฿</p>
+</div>
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+</div>
+</div>
+<!-- ภ.ง.ด.3 -->
+<div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-lg">ภ.ง.ด.3</h3>
+<p class="text-xs text-gray-500">หัก ณ ที่จ่าย (บุคคล)</p>
+</div>
+<span class="px-2 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold rounded uppercase">รอดำเนินการ</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<p class="text-sm text-gray-500 mb-1">ยอดภาษีคาดการณ์</p>
+<p class="text-2xl font-black">4,200.00 ฿</p>
+</div>
+<span class="material-symbols-outlined text-amber-500">pending</span>
+</div>
+</div>
+<!-- ภ.ง.ด.53 -->
+<div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-lg">ภ.ง.ด.53</h3>
+<p class="text-xs text-gray-500">หัก ณ ที่จ่าย (นิติบุคคล)</p>
+</div>
+<span class="px-2 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold rounded uppercase">รอดำเนินการ</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<p class="text-sm text-gray-500 mb-1">ยอดภาษีคาดการณ์</p>
+<p class="text-2xl font-black">2,840.00 ฿</p>
+</div>
+<span class="material-symbols-outlined text-amber-500">schedule</span>
+</div>
+</div>
+</div>
+<!-- Calendar View -->
+<div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-xl font-bold">ปฏิทินภาษี</h3>
+<p class="text-sm text-gray-500">กำหนดการยื่นแบบและชำระภาษีในเดือนนี้</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 border border-gray-200 rounded-lg hover:bg-gray-50">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="px-4 py-2 border border-gray-200 rounded-lg text-sm font-bold">พฤศจิกายน 2566</button>
+<button class="p-2 border border-gray-200 rounded-lg hover:bg-gray-50">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-px bg-gray-100 border border-gray-100 rounded-lg overflow-hidden">
+<!-- Days of week -->
+<div class="bg-gray-50 p-4 text-center text-xs font-bold text-gray-500">อา.</div>
+<div class="bg-gray-50 p-4 text-center text-xs font-bold text-gray-500">จ.</div>
+<div class="bg-gray-50 p-4 text-center text-xs font-bold text-gray-500">อ.</div>
+<div class="bg-gray-50 p-4 text-center text-xs font-bold text-gray-500">พ.</div>
+<div class="bg-gray-50 p-4 text-center text-xs font-bold text-gray-500">พฤ.</div>
+<div class="bg-gray-50 p-4 text-center text-xs font-bold text-gray-500">ศ.</div>
+<div class="bg-gray-50 p-4 text-center text-xs font-bold text-gray-500">ส.</div>
+<!-- Empty cells for start of month -->
+<div class="bg-white h-32 p-2"></div>
+<div class="bg-white h-32 p-2"></div>
+<div class="bg-white h-32 p-2"></div>
+<!-- Calendar Days -->
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">1</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">2</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">3</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">4</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">5</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">6</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors border-2 border-primary/20">
+<span class="text-sm font-bold text-primary">7</span>
+<div class="mt-1 flex flex-col gap-1">
+<div class="px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-bold rounded leading-tight">ยื่น ภ.ง.ด.3, 53</div>
+<div class="px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-bold rounded leading-tight">ยื่น ภ.ง.ด.1</div>
+</div>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">8</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">9</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">10</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">11</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">12</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">13</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">14</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors border-2 border-primary/20">
+<span class="text-sm font-bold text-primary">15</span>
+<div class="mt-1 flex flex-col gap-1">
+<div class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded leading-tight">ยื่น ภ.พ.30</div>
+</div>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">16</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">17</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">18</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">19</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">20</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">21</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">22</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors border-2 border-primary/20">
+<span class="text-sm font-bold text-primary">23</span>
+<div class="mt-1 flex flex-col gap-1">
+<div class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded leading-tight">นำส่ง ประกันสังคม</div>
+</div>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">24</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">25</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">26</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">27</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">28</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">29</span>
+</div>
+<div class="bg-white h-32 p-2 relative group hover:bg-gray-50 transition-colors">
+<span class="text-sm font-medium text-gray-400">30</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Side AI Tax Planner -->
+<aside class="w-80 flex-shrink-0 bg-white border-l border-gray-200 overflow-y-auto">
+<div class="p-6">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+<h3 class="font-bold text-lg">AI Tax Planner</h3>
+</div>
+<div class="space-y-6">
+<!-- Tip Card 1 -->
+<div class="bg-primary/5 border border-primary/10 p-4 rounded-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-10">
+<span class="material-symbols-outlined text-4xl">savings</span>
+</div>
+<h4 class="font-bold text-primary mb-2">คำแนะนำประหยัดภาษี</h4>
+<p class="text-sm text-gray-600 leading-relaxed">
+                            บริษัทมีรายจ่ายสวัสดิการพนักงานเพิ่มขึ้น แนะนำให้ทำ **"ประกันกลุ่ม"** เพื่อนำมาลดหย่อนภาษีนิติบุคคลได้สูงสุด 100% ของค่าเบี้ยประกัน
+                        </p>
+<button class="mt-4 text-xs font-bold text-primary flex items-center gap-1 hover:underline">
+                            ดูรายละเอียดเพิ่มเติม <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+<!-- Tip Card 2 -->
+<div class="bg-gray-50 border border-gray-100 p-4 rounded-xl">
+<h4 class="font-bold text-gray-800 mb-2">การตรวจสอบเอกสาร</h4>
+<p class="text-sm text-gray-600 leading-relaxed">
+                            ระบบพบว่ามีใบกำกับภาษีซื้อ 3 รายการที่อาจเป็น **"ภาษีซื้อต้องห้าม"** โปรดตรวจสอบก่อนยื่น ภ.พ.30 ในเดือนหน้า
+                        </p>
+<div class="mt-3 flex gap-2">
+<div class="size-8 rounded bg-white flex items-center justify-center border border-gray-200">
+<span class="material-symbols-outlined text-sm text-gray-400">attach_file</span>
+</div>
+<div class="size-8 rounded bg-white flex items-center justify-center border border-gray-200">
+<span class="material-symbols-outlined text-sm text-gray-400">attach_file</span>
+</div>
+</div>
+</div>
+<!-- Compliance Check -->
+<div class="bg-green-50 border border-green-100 p-4 rounded-xl">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-green-600 text-sm">verified_user</span>
+<h4 class="font-bold text-green-800">สถานะความปลอดภัย</h4>
+</div>
+<p class="text-[11px] text-green-700 leading-tight">
+                            เอกสารของคุณถูกเข้ารหัสด้วย AES-256 และเป็นไปตามข้อกำหนด PDPA 100%
+                        </p>
+</div>
+<!-- Quick Ask -->
+<div class="pt-6 border-t border-gray-100">
+<p class="text-xs font-bold text-gray-400 uppercase mb-3">ถามพี่โล่ (AI)</p>
+<div class="relative">
+<input class="w-full bg-gray-50 border-none rounded-xl py-3 pl-4 pr-10 text-sm focus:ring-primary focus:ring-1" placeholder="ถามเรื่องภาษี..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 text-primary p-1">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

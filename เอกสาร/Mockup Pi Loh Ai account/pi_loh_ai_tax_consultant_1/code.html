@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pi Loh AI Tax Consultant - Instant Consultant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#197fe6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                        "legal-gold": "#856404",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: "Public Sans", sans-serif;
+        }
+        .legal-text {
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418]">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between border-b border-primary/10 bg-white px-6 py-3 shrink-0">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined text-xl">balance</span>
+</div>
+<h2 class="text-lg font-bold tracking-tight text-[#111418]">Pi Loh AI</h2>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-sm font-medium text-[#637588] hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-semibold text-primary border-b-2 border-primary pb-4 mt-4" href="#">Instant Consultant</a>
+<a class="text-sm font-medium text-[#637588] hover:text-primary transition-colors" href="#">Tax Library</a>
+<a class="text-sm font-medium text-[#637588] hover:text-primary transition-colors" href="#">Compliance</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-[#637588] text-xl">search</span>
+<input class="h-9 w-64 rounded-lg border-none bg-primary/5 pl-10 text-sm focus:ring-2 focus:ring-primary/20" placeholder="Search laws or cases..." type="text"/>
+</div>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<div class="h-9 w-9 rounded-full bg-primary/20 flex items-center justify-center border border-primary/10 overflow-hidden">
+<img alt="User avatar" class="h-full w-full object-cover" data-alt="Corporate professional headshot avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMRZ3pCBuExoiscWywpNyP4zzVXl4vcFI3BBzkirZhTiMxXwlTLkm_jB_bKx9xWxe4gKCnZsb_iBuG0EtCh1DrX88KuC1jkDs5UWGHMDYGxNYDU55CjetKWaKbW3LO-ytj7j3e2URYoopwt253GgNS4cav9JcWsrjJINbGwnpofF5HyYsJYGeLBl1sn3N831_mXHD1kQzxYSCSBMTiX-qcB0tM9Ao9bE9RZASk_W92V6JKnyd81dbBzjhTlqnQQtj2GvN7PlA88Ro"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area: Split Screen -->
+<main class="flex flex-1 overflow-hidden">
+<!-- Left Pane: AI Consultation Chat -->
+<section class="flex flex-1 flex-col bg-white border-r border-primary/10">
+<div class="flex items-center justify-between px-6 py-4 border-b border-primary/5">
+<div>
+<h1 class="text-xl font-bold text-[#111418]">Instant Consultant</h1>
+<div class="flex items-center gap-2 mt-1">
+<span class="flex h-2 w-2 rounded-full bg-green-500"></span>
+<p class="text-xs font-medium text-[#637588]">AI Legal Engine v4.2 • Updated 2 hours ago</p>
+</div>
+</div>
+<button class="flex items-center gap-2 rounded-lg border border-primary/20 px-3 py-1.5 text-xs font-semibold text-primary hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Export Session
+                </button>
+</div>
+<!-- Chat Area -->
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<!-- AI Message -->
+<div class="flex gap-4 max-w-[85%]">
+<div class="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-lg">smart_toy</span>
+</div>
+<div class="space-y-3">
+<div class="rounded-2xl rounded-tl-none bg-primary/5 p-4 border border-primary/5">
+<p class="text-sm leading-relaxed text-[#111418]">
+                                Sawasdee krap! I am Pi Loh, your Thai Tax Consultant. I can help you with questions regarding the Revenue Code, VAT compliance, or Corporate Income Tax. What would you like to analyze today?
+                            </p>
+</div>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex flex-row-reverse gap-4 max-w-[85%] ml-auto">
+<div class="h-8 w-8 rounded-lg bg-[#637588]/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[#637588] text-lg">person</span>
+</div>
+<div class="rounded-2xl rounded-tr-none bg-[#111418] p-4">
+<p class="text-sm leading-relaxed text-white">
+                            How should I handle disallowed expenses for my SME's corporate tax return? Specifically about travel receipts.
+                        </p>
+</div>
+</div>
+<!-- AI Response with Context -->
+<div class="flex gap-4 max-w-[85%]">
+<div class="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-lg">smart_toy</span>
+</div>
+<div class="space-y-4">
+<div class="rounded-2xl rounded-tl-none bg-primary/5 p-4 border border-primary/5">
+<p class="text-sm leading-relaxed text-[#111418]">
+                                Under the Thai Revenue Code, disallowed expenses for Corporate Income Tax (CIT) are governed primarily by <span class="font-bold text-primary underline cursor-help">Section 65 Ter</span>. 
+                                <br/><br/>
+                                For travel receipts to be deductible:
+                                <br/>1. They must be directly related to the business.
+                                <br/>2. You must have a proper receipt (Tax Invoice/Receipt).
+                                <br/>3. Expenses without a clear recipient are disallowed under Section 65 Ter (18).
+                                <br/><br/>
+                                I have pulled the relevant sections in the Reference Panel to your right.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat Input & Suggestions -->
+<div class="p-6 border-t border-primary/10 bg-background-light/30">
+<!-- Suggestion Chips -->
+<div class="flex gap-2 mb-4 overflow-x-auto pb-2 scrollbar-hide">
+<button class="whitespace-nowrap rounded-full border border-primary/20 bg-white px-4 py-1.5 text-xs font-medium text-[#111418] hover:bg-primary/5">
+                        VAT refund process
+                    </button>
+<button class="whitespace-nowrap rounded-full border border-primary/20 bg-white px-4 py-1.5 text-xs font-medium text-[#111418] hover:bg-primary/5">
+                        Withholding tax rates
+                    </button>
+<button class="whitespace-nowrap rounded-full border border-primary/20 bg-white px-4 py-1.5 text-xs font-medium text-[#111418] hover:bg-primary/5">
+                        Section 65 Ter summary
+                    </button>
+<button class="whitespace-nowrap rounded-full border border-primary/20 bg-white px-4 py-1.5 text-xs font-medium text-[#111418] hover:bg-primary/5">
+                        E-Tax Invoice setup
+                    </button>
+</div>
+<div class="relative">
+<textarea class="w-full rounded-xl border border-primary/20 p-4 pr-32 text-sm focus:ring-2 focus:ring-primary/20 min-h-[100px] resize-none" placeholder="Ask about Thai tax law..." rows="3"></textarea>
+<div class="absolute bottom-3 right-3 flex items-center gap-2">
+<button class="flex h-10 w-10 items-center justify-center rounded-lg text-[#637588] hover:bg-primary/5">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<button class="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white shadow-lg shadow-primary/20">
+<span>Send</span>
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+<p class="mt-3 text-[10px] text-center text-[#637588]">Pi Loh AI provides legal analysis based on public records. Always consult with a licensed auditor for final filings.</p>
+</div>
+</section>
+<!-- Right Pane: Reference Panel -->
+<aside class="w-[450px] flex flex-col bg-background-light overflow-hidden">
+<div class="flex items-center gap-3 px-6 py-4 bg-white border-b border-primary/10">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+<h2 class="text-sm font-bold uppercase tracking-wider text-[#111418]">Reference Panel</h2>
+</div>
+<div class="p-4 flex-1 overflow-y-auto space-y-4">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap items-center gap-1.5 px-2">
+<span class="text-[11px] font-semibold text-[#637588] uppercase tracking-tighter">Revenue Code</span>
+<span class="material-symbols-outlined text-[14px] text-[#637588]">chevron_right</span>
+<span class="text-[11px] font-semibold text-[#637588] uppercase tracking-tighter">Title 2: Income Tax</span>
+<span class="material-symbols-outlined text-[14px] text-[#637588]">chevron_right</span>
+<span class="text-[11px] font-semibold text-primary uppercase tracking-tighter">Chapter 3: CIT</span>
+</div>
+<!-- Legal Citation Card 1 -->
+<div class="group relative rounded-xl border-2 border-primary bg-white p-5 shadow-sm transition-all hover:shadow-md">
+<div class="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-[#637588] hover:text-primary">
+<span class="material-symbols-outlined text-lg">content_copy</span>
+</button>
+</div>
+<div class="mb-3 flex items-center justify-between">
+<span class="rounded bg-primary/10 px-2 py-0.5 text-[10px] font-bold text-primary">ACTIVE REFERENCE</span>
+<span class="text-[11px] font-medium text-[#637588]">Updated: Jan 2024</span>
+</div>
+<h3 class="mb-3 font-display text-lg font-bold text-[#111418]">Section 65 Ter</h3>
+<p class="mb-2 text-[12px] font-semibold text-primary italic">Disallowed Expenses for Tax Purposes</p>
+<div class="legal-text space-y-3 text-[13px] text-[#111418]">
+<p class="font-medium text-[#111418] bg-primary/5 p-2 rounded">
+                            "The following items shall not be allowed as expenses in the calculation of net profits:"
+                        </p>
+<div class="pl-4 border-l-2 border-primary/20 space-y-3">
+<p><strong>(1)</strong> Reserves except those specifically mentioned.</p>
+<p><strong>(13)</strong> Expenses which are not for the purpose of making profits or for the purpose of business in Thailand.</p>
+<p class="text-primary font-semibold"><strong>(18)</strong> Expenses the recipient of which cannot be identified.</p>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-primary/5 pt-3">
+<button class="text-xs font-semibold text-primary flex items-center gap-1">
+                            View Official Thai Text
+                            <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</button>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-primary text-sm">verified</span>
+</div>
+</div>
+</div>
+<!-- Legal Citation Card 2 (Secondary) -->
+<div class="group relative rounded-xl border border-primary/10 bg-white p-5 shadow-sm transition-all hover:border-primary/30">
+<h3 class="mb-2 font-display text-base font-bold text-[#111418]">Section 65 Bis</h3>
+<p class="mb-3 text-[11px] font-medium text-[#637588]">Conditions for Computing Net Profit</p>
+<div class="legal-text text-[13px] text-[#637588]">
+<p>Calculation of net profit and net loss of a company or juristic partnership shall be based on the accrual basis. Revenue arising in any accounting period...</p>
+</div>
+<button class="mt-3 text-[11px] font-bold text-primary hover:underline">Read full section</button>
+</div>
+<!-- Accounting Standards Sidebar Item -->
+<div class="rounded-xl bg-gradient-to-br from-[#111418] to-[#2c3e50] p-5 text-white shadow-lg">
+<div class="mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-400">info</span>
+<h4 class="text-xs font-bold uppercase tracking-widest">Accounting Tip</h4>
+</div>
+<p class="text-xs leading-relaxed opacity-90">
+                        When recording travel expenses, TFRS for NPAEs requires that all supporting documents clearly state the business purpose. Inconsistency between GL entry and receipt is a common audit trigger for Thai Revenue Department.
+                    </p>
+</div>
+</div>
+<!-- Reference Panel Search -->
+<div class="p-4 bg-white border-t border-primary/10">
+<div class="flex items-center gap-2 rounded-lg border border-primary/10 bg-background-light px-3 py-2">
+<span class="material-symbols-outlined text-[#637588] text-lg">search</span>
+<input class="bg-transparent border-none p-0 text-xs focus:ring-0 w-full" placeholder="Filter references..." type="text"/>
+</div>
+</div>
+</aside>
+</main>
+<!-- Global Footer Bar -->
+<footer class="flex items-center justify-between border-t border-primary/10 bg-white px-6 py-2 shrink-0">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-green-500">lock</span>
+<span class="text-[10px] font-medium text-[#637588]">ISO 27001 Data Encryption Active</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-[#637588]">history</span>
+<span class="text-[10px] font-medium text-[#637588]">Session autosaved 1m ago</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[10px] font-bold text-primary hover:underline">User Manual</button>
+<button class="text-[10px] font-bold text-[#637588] hover:text-primary">Legal Terms</button>
+<div class="h-4 w-[1px] bg-primary/10"></div>
+<p class="text-[10px] text-[#637588]">© 2024 Pi Loh Tax AI. Developed for Thai SMEs.</p>
+</div>
+</footer>
+</div>
+</body></html>

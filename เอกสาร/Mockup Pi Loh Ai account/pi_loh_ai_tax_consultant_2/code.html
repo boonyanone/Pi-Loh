@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ที่ปรึกษา AI - แถบเมนูสีขาว (White Sidebar Update)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&amp;family=Public+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#197fe6",
+                        "navy-deep": "#0f172a",
+                        "background-light": "#f8fafc",
+                        "legal-blue": "#eff6ff",
+                        "sidebar-active-bg": "#eff6ff",
+                        "sidebar-active-text": "#1e40af",
+                    },
+                    fontFamily: {
+                        "sans": ["Sarabun", "Public Sans", "sans-serif"],
+                        "display": ["Sarabun", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply font-sans bg-background-light text-slate-900;
+            }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .legal-highlight {
+            @apply bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold border border-blue-200 cursor-pointer hover:bg-blue-200 transition-colors;
+        }
+        .main-sidebar-item-active {
+            @apply bg-sidebar-active-bg text-sidebar-active-text shadow-sm;
+        }
+        .chat-sidebar-item-active {
+            @apply bg-primary/10 text-primary border-r-2 border-primary;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            @apply bg-slate-200 rounded-full;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+<header class="h-14 flex items-center justify-between border-b border-slate-200 bg-white px-6 shrink-0 z-30">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-navy-deep text-white">
+<span class="material-symbols-outlined text-lg">shield_person</span>
+</div>
+<h1 class="text-sm font-bold tracking-tight text-navy-deep uppercase">AI Accountant Pro</h1>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-xs font-semibold text-slate-500 hover:text-primary transition-colors" href="#">แดชบอร์ด</a>
+<a class="text-xs font-bold text-primary border-b-2 border-primary py-4" href="#">ที่ปรึกษา AI</a>
+<a class="text-xs font-semibold text-slate-500 hover:text-primary transition-colors" href="#">คลังความรู้</a>
+<a class="text-xs font-semibold text-slate-500 hover:text-primary transition-colors" href="#">ความถูกต้อง</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative flex items-center group">
+<span class="material-symbols-outlined absolute left-3 text-slate-400 text-sm">search</span>
+<input class="h-8 w-60 rounded-full border-slate-200 bg-slate-50 pl-9 text-xs focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all" placeholder="ค้นหาข้อกฎหมาย..." type="text"/>
+</div>
+<div class="h-6 w-[1px] bg-slate-200"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-[11px] font-bold text-navy-deep leading-none">สมชาย ยินดี</p>
+<p class="text-[9px] text-slate-500 uppercase">SME Account</p>
+</div>
+<div class="h-8 w-8 rounded-full border border-slate-200 overflow-hidden">
+<img alt="User profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwn0DnY1l4znz_Yg_SYD1NQC6POfZUxAKU7X8tShXF-pXztdm3yfKRG6TPIn4X4NpfJSJ5P2PSyyy4fstgEP_DfJlnM1D6vqlNx_wp9t0pssYN6hLmcpISyQ2htA_vi2TCmLl-eZXBMc-kgu8CC6dVrtuYpRJAFl1NlPE5doEwPSHEwKqH6lJoROpyaf8sRVy_0pI_igGfOkVKe8eWJZrvOUUptRgnXGsA_39Gh5rInHbBRZQUirPUYvwVHUE0SDSEflEt6MM1skk"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<aside class="w-20 lg:w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 z-20">
+<div class="p-4 hidden lg:block">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4 px-3">เมนูหลัก</p>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-navy-deep transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-sm font-medium hidden lg:block">หน้าหลัก</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-navy-deep transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-sm font-medium hidden lg:block">เอกสาร</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-navy-deep transition-all" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span class="text-sm font-medium hidden lg:block">ตรวจสอบบัญชี</span>
+</a>
+<a class="main-sidebar-item-active flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="text-sm font-bold hidden lg:block">ที่ปรึกษา AI</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-navy-deep transition-all" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-sm font-medium hidden lg:block">ยื่นภาษี</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-navy-deep transition-all" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="text-sm font-medium hidden lg:block">ตลาดผู้สอบบัญชี</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-100">
+<div class="rounded-xl bg-slate-50 p-3 hidden lg:block">
+<p class="text-[10px] font-bold text-primary mb-1">PRO PLAN</p>
+<p class="text-[11px] text-slate-500">เหลือเวลาใช้งาน 150 วัน</p>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 mt-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-navy-deep transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium hidden lg:block">ตั้งค่า</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex overflow-hidden">
+<aside class="w-72 bg-slate-50 border-r border-slate-200 flex flex-col shrink-0">
+<div class="p-4">
+<button class="w-full flex items-center justify-center gap-2 rounded-xl bg-white border border-slate-200 px-4 py-2.5 text-sm font-bold text-navy-deep hover:bg-white/80 transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">add</span>
+                        เริ่มการปรึกษาใหม่
+                    </button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar px-3 space-y-4">
+<div>
+<h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 px-3">ประวัติการปรึกษา</h3>
+<div class="space-y-1">
+<div class="chat-sidebar-item-active flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined text-lg">chat_bubble</span>
+<span class="text-xs font-bold truncate">รายจ่ายต้องห้าม มาตรา 65 ตรี</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-200/50 cursor-pointer transition-all">
+<span class="material-symbols-outlined text-lg opacity-40">chat_bubble</span>
+<span class="text-xs font-medium truncate">การขอคืนภาษีมูลค่าเพิ่ม (VAT)</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-200/50 cursor-pointer transition-all">
+<span class="material-symbols-outlined text-lg opacity-40">chat_bubble</span>
+<span class="text-xs font-medium truncate">ภาษีหัก ณ ที่จ่าย ค่าเช่าอาคาร</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 bg-slate-100/50 border-t border-slate-200">
+<div class="flex items-center gap-2 mb-2">
+<span class="flex h-1.5 w-1.5 rounded-full bg-green-500"></span>
+<p class="text-[10px] font-bold text-slate-600">ฐานข้อมูลสรรพากร 2567 (ล่าสุด)</p>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col bg-white overflow-hidden relative">
+<div class="flex items-center justify-between px-6 py-3 border-b border-slate-100 bg-white/80 backdrop-blur-sm z-10">
+<div class="flex items-center gap-3">
+<div class="p-1.5 bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary text-xl">smart_toy</span>
+</div>
+<h2 class="text-sm font-bold text-navy-deep">พี่โล่ - ที่ปรึกษาภาษีอัจฉริยะ</h2>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-400 hover:text-navy-deep hover:bg-slate-100 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">share</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-navy-deep hover:bg-slate-100 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">archive</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar bg-[#fdfdfd]">
+<div class="flex gap-4 max-w-4xl">
+<div class="h-8 w-8 rounded-lg bg-navy-deep text-white flex items-center justify-center shrink-0 shadow-md">
+<span class="material-symbols-outlined text-base">shield_person</span>
+</div>
+<div class="space-y-1">
+<div class="bg-white border border-slate-200 rounded-2xl rounded-tl-none p-4 shadow-sm max-w-2xl">
+<p class="text-sm leading-relaxed text-slate-700">
+                                    สวัสดีครับ ผมคือ <strong>พี่โล่</strong> ที่ปรึกษา AI ของคุณ วันนี้คุณต้องการให้ผมช่วยวิเคราะห์เรื่องภาษีหรือประเด็นทางบัญชีส่วนไหนเป็นพิเศษไหมครับ?
+                                </p>
+</div>
+</div>
+</div>
+<div class="flex flex-row-reverse gap-4 max-w-4xl ml-auto">
+<div class="h-8 w-8 rounded-lg bg-primary text-white flex items-center justify-center shrink-0 shadow-md">
+<span class="material-symbols-outlined text-base">person</span>
+</div>
+<div class="bg-navy-deep rounded-2xl rounded-tr-none p-4 shadow-lg shadow-navy-deep/10 max-w-2xl">
+<p class="text-sm leading-relaxed text-white">
+                                อยากสอบถามเรื่องรายจ่ายค่าน้ำมันรถยนต์ของบริษัทครับ ถ้าไม่มีชื่อบริษัทในใบกำกับภาษีแต่มีทะเบียนรถ สามารถนำมาเป็นค่าใช้จ่ายได้ไหม?
+                            </p>
+</div>
+</div>
+<div class="flex gap-4 max-w-4xl">
+<div class="h-8 w-8 rounded-lg bg-navy-deep text-white flex items-center justify-center shrink-0 shadow-md">
+<span class="material-symbols-outlined text-base">shield_person</span>
+</div>
+<div class="space-y-3 flex-1">
+<div class="bg-white border border-slate-200 rounded-2xl rounded-tl-none p-5 shadow-sm max-w-2xl">
+<div class="prose prose-sm text-slate-700 space-y-3">
+<p>สำหรับการจัดการรายจ่ายค่าน้ำมันเพื่อให้เป็นรายจ่ายทางภาษีที่ถูกต้อง มีประเด็นที่ต้องพิจารณาตาม <span class="legal-highlight">มาตรา 65 ตรี</span> ดังนี้ครับ:</p>
+<ul class="list-disc pl-5 space-y-2 text-xs">
+<li><strong>มาตรา 65 ตรี (13):</strong> รายจ่ายซึ่งมิใช่เพื่อกิจการโดยเฉพาะ หากไม่ระบุชื่อบริษัท อาจถูกมองว่าเป็นรายจ่ายส่วนตัวได้</li>
+<li><strong>มาตรา 65 ตรี (18):</strong> หากพิสูจน์ไม่ได้ว่าใครเป็นผู้รับเงิน หรือจ่ายให้ใคร จะถือเป็นรายจ่ายต้องห้าม</li>
+</ul>
+<div class="bg-blue-50 border-l-4 border-primary p-3 rounded-r-lg mt-4">
+<p class="text-[11px] font-bold text-primary mb-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">info</span> แนวทางปฏิบัติ:
+                                        </p>
+<p class="text-[12px] leading-relaxed">แม้มีเลขทะเบียนรถ แต่แนะนำให้ขอใบกำกับภาษีแบบเต็มรูปที่มีชื่อ-ที่อยู่บริษัททุกครั้ง เพื่อความปลอดภัยในการตรวจสอบจากกรมสรรพากรครับ</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 bg-white border-t border-slate-100">
+<div class="max-w-4xl mx-auto">
+<div class="flex gap-2 mb-3 overflow-x-auto pb-1 no-scrollbar">
+<button class="whitespace-nowrap rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] font-semibold text-slate-500 hover:border-primary hover:text-primary transition-all">สรุปมาตรา 65 ตรี</button>
+<button class="whitespace-nowrap rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] font-semibold text-slate-500 hover:border-primary hover:text-primary transition-all">การขอคืน VAT</button>
+<button class="whitespace-nowrap rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] font-semibold text-slate-500 hover:border-primary hover:text-primary transition-all">ภาษีหัก ณ ที่จ่าย 2567</button>
+</div>
+<div class="relative bg-slate-50 rounded-2xl border border-slate-200 focus-within:ring-4 focus-within:ring-primary/5 focus-within:border-primary transition-all p-2">
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-sm p-2 min-h-[60px] resize-none" placeholder="พิมพ์คำถามเกี่ยวกับภาษีหรือบัญชีของคุณที่นี่..."></textarea>
+<div class="flex items-center justify-between px-2 pb-1">
+<div class="flex items-center gap-1">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">attach_file</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">image</span>
+</button>
+</div>
+<button class="flex items-center gap-2 rounded-xl bg-primary px-5 py-2 text-xs font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+<span>ส่งคำถาม</span>
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<aside class="w-80 flex flex-col bg-slate-50 border-l border-slate-200 overflow-hidden shrink-0">
+<div class="flex items-center gap-3 px-5 py-4 bg-white border-b border-slate-200">
+<span class="material-symbols-outlined text-primary text-xl">menu_book</span>
+<h2 class="text-xs font-bold uppercase tracking-wider text-navy-deep">แผงข้อมูลอ้างอิง</h2>
+</div>
+<div class="p-4 flex-1 overflow-y-auto space-y-4 custom-scrollbar">
+<div class="rounded-xl border-2 border-primary bg-white p-4 shadow-sm">
+<div class="mb-3 flex items-center justify-between">
+<span class="rounded-md bg-primary px-2 py-0.5 text-[9px] font-bold text-white uppercase tracking-tighter">Active Reference</span>
+<span class="text-[9px] font-bold text-slate-400 italic">ประมวลรัษฎากร</span>
+</div>
+<h3 class="font-bold text-base text-navy-deep mb-2">มาตรา 65 ตรี</h3>
+<div class="text-[12px] leading-relaxed text-slate-600 space-y-2">
+<p class="font-bold text-slate-800">"รายการต่อไปนี้ มิให้ถือเป็นรายจ่ายในการคำนวณกำไรสุทธิ:"</p>
+<p class="pl-2 border-l-2 border-slate-100"><strong>(13)</strong> รายจ่ายซึ่งมิใช่เพื่อกิจการโดยเฉพาะ...</p>
+<p class="pl-2 border-l-2 border-primary bg-primary/5 p-2 rounded-r">
+<strong>(18)</strong> รายจ่ายซึ่งผู้จ่ายพิสูจน์ไม่ได้ว่าใครเป็นผู้รับเงิน
+                            </p>
+</div>
+<button class="w-full mt-4 py-2 text-[10px] font-bold text-primary border border-primary/20 rounded-lg hover:bg-primary/5 transition-colors">
+                            อ่านกฎหมายฉบับเต็ม
+                        </button>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4">
+<h4 class="font-bold text-[11px] text-slate-400 uppercase mb-2">อ้างอิงเพิ่มเติม</h4>
+<p class="text-[11px] font-bold text-navy-deep mb-1">มาตรา 65 ทวิ (เกณฑ์สิทธิ)</p>
+<p class="text-[11px] text-slate-500 leading-relaxed truncate">การคำนวณกำไรสุทธิและขาดทุนสุทธิของบริษัทให้ใช้เกณฑ์สิทธิ...</p>
+</div>
+<div class="rounded-xl bg-navy-deep p-4 text-white shadow-lg">
+<div class="mb-3 flex items-center gap-2">
+<div class="p-1.5 rounded-lg bg-yellow-400/20 text-yellow-400">
+<span class="material-symbols-outlined text-lg">lightbulb</span>
+</div>
+<h4 class="text-[10px] font-bold uppercase tracking-widest">เคล็ดลับบัญชี (Accounting Tip)</h4>
+</div>
+<p class="text-[11px] leading-relaxed opacity-90">
+                            ตามมาตรฐาน TFRS for NPAEs การบันทึกค่าใช้จ่ายต้องมีหลักฐานชัดเจน หากชื่อไม่ตรงกับกิจการ ให้จัดทำ "ใบรับรองแทนใบเสร็จรับเงิน" และแนบหลักฐานการใช้รถจริงประกอบเพื่อลดความเสี่ยง
+                        </p>
+</div>
+</div>
+<div class="p-4 bg-white border-t border-slate-200">
+<div class="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 group focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-slate-400 text-sm">search</span>
+<input class="bg-transparent border-none p-0 text-[11px] focus:ring-0 w-full placeholder:text-slate-400" placeholder="ค้นหามาตราอื่น..." type="text"/>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<footer class="h-10 flex items-center justify-between border-t border-slate-200 bg-white px-6 shrink-0 z-30">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-green-500">verified_user</span>
+<span class="text-[10px] font-bold text-slate-600 uppercase">การเข้ารหัสข้อมูล ISO 27001</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-primary">memory</span>
+<span class="text-[10px] font-bold text-slate-600 uppercase">ประมวลผลภายในเครื่อง (On-device Processing)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-blue-400">lock</span>
+<span class="text-[10px] font-bold text-slate-600 uppercase">Local-only Privacy Mode</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<p class="text-[10px] text-slate-400 font-medium">© 2024 AI Accountant Pro - พัฒนาเพื่อ SME ไทย</p>
+<div class="h-3 w-[1px] bg-slate-200"></div>
+<div class="flex gap-3">
+<button class="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors">คู่มือ</button>
+<button class="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors">นโยบายความเป็นส่วนตัว</button>
+</div>
+</div>
+</footer>
+
+</body></html>
