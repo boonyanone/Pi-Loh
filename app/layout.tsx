@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
-import { Public_Sans } from "next/font/google";
 import "./globals.css";
-
-const publicSans = Public_Sans({
-  variable: "--font-public-sans",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "900"],
-});
 
 export const metadata: Metadata = {
   title: "พี่โล่ - ที่ปรึกษา AI (AI Consultant)",
@@ -26,7 +19,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${publicSans.variable} antialiased font-display`}>
+      <body className="antialiased font-sans">
         {children}
       </body>
     </html>
