@@ -11,13 +11,26 @@ export async function POST(req: Request) {
     try {
         const { messages } = await req.json();
 
+        // Robust message parsing to handle incoming 'parts' vs 'content'
+        const coreMessages = messages.map((m: any) => {
+            let content = "";
+            if (typeof m.content === "string") {
+                content = m.content;
+            } else if (Array.isArray(m.parts)) {
+                content = m.parts[0]?.text || "";
+            } else if (m.content && typeof m.content === "object") {
+                content = JSON.stringify(m.content);
+            }
+            return {
+                role: m.role || "user",
+                content: content
+            };
+        });
+
         const result = streamText({
             model: google("gemini-1.5-flash"),
             system: SYSTEM_PROMPT,
-            messages: messages.map((m: any) => ({
-                role: m.role || "user",
-                content: typeof m.content === "string" ? m.content : (m.parts?.[0]?.text || "")
-            })),
+            messages: coreMessages,
             temperature: 0.7,
         });
 
