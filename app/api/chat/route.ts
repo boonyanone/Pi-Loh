@@ -3,6 +3,7 @@ import { streamText } from "ai";
 import { SYSTEM_PROMPT } from "@/lib/ai/system-prompt";
 import { getRelevantKnowledge } from "@/lib/ai/knowledge";
 
+// Unique build ID to force fresh deployment: 2026-02-19T16:55:00
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
@@ -20,26 +21,31 @@ export async function POST(req: Request) {
         const lastMessage = coreMessages[coreMessages.length - 1]?.content || "";
         const context = getRelevantKnowledge(lastMessage);
 
-        // Version v15: Using gemini-1.5-flash-8b which often has better availability on limited keys
+        // Forced v20 with standard gemini-1.5-flash
         const result = streamText({
-            model: google("gemini-1.5-flash-8b"),
+            model: google("gemini-1.5-flash"),
             system: SYSTEM_PROMPT + context,
             messages: coreMessages,
         });
 
-        // Add cache control to prevent browser/CDN from serving old responses
         const response = result.toTextStreamResponse();
-        response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+        response.headers.set('X-Version', 'v20');
+        response.headers.set('Cache-Control', 'no-store, max-age=0');
         return response;
     } catch (error) {
-        console.error("Chat API v15 Error:", error);
+        console.error("Chat API v20 Error:", error);
         return new Response(JSON.stringify({
-            version: "v15",
+            version: "v20",
+            timestamp: "2026-02-19T16:55:00",
             error: (error as Error).message,
             name: (error as any).name
         }), {
             status: 500,
-            headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
+            headers: {
+                'Content-Type': 'application/json',
+                'Cache-Control': 'no-store',
+                'X-Version': 'v20'
+            }
         });
     }
 }
