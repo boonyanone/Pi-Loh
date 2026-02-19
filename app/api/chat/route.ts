@@ -28,15 +28,16 @@ export async function POST(req: Request) {
         const context = getRelevantKnowledge(lastMessage);
 
         const result = streamText({
-            model: google("gemini-1.5-flash-8b"),
+            model: google("gemini-1.5-flash"),
             system: SYSTEM_PROMPT + context,
             messages: coreMessages,
         });
 
-        return result.toDataStreamResponse();
+        return result.toTextStreamResponse();
     } catch (error) {
         console.error("Chat API Error:", error);
         return new Response(JSON.stringify({
+            version: "v12",
             error: (error as Error).message,
             stack: (error as Error).stack
         }), { status: 500 });
