@@ -1,10 +1,8 @@
 import { google } from "@ai-sdk/google";
-import { streamText } from "ai";
-import { SYSTEM_PROMPT } from "@/lib/ai/system-prompt";
-import { getRelevantKnowledge } from "@/lib/ai/knowledge";
+import { generateText } from "ai";
 
-// FORCE DEPLOY v80 - TIMESTAMP: 2026-02-19T17:15:00
-// RELIABLE MODEL: models/gemini-2.0-flash-lite (CONFIRMED IN v50 DIAGNOSTIC)
+// v90 - NON-STREAMING ULTIMATE TEST
+// MODEL: models/gemini-2.0-flash-lite
 
 export const maxDuration = 30;
 
@@ -15,41 +13,34 @@ export async function POST(req: Request) {
 
     try {
         const { messages } = await req.json();
+        const lastMessage = messages[messages.length - 1]?.content || "สวัสดี";
 
-        const coreMessages = messages.map((m: any) => {
-            let content = "";
-            if (typeof m.content === 'string') content = m.content;
-            else if (Array.isArray(m.parts)) {
-                content = m.parts.filter((p: any) => p.type === 'text').map((p: any) => p.text).join('\n');
+        // Version v90: Using generateText (NON-STREAMING) to confirm model connectivity
+        const { text } = await generateText({
+            model: google("models/gemini-2.0-flash-lite"),
+            prompt: lastMessage,
+        });
+
+        if (!text) {
+            return new Response("Empty response from AI", { status: 200, headers: { 'X-Version': 'v90' } });
+        }
+
+        return new Response(text, {
+            headers: {
+                'X-Version': 'v90',
+                'Content-Type': 'text/plain; charset=utf-8',
+                'Cache-Control': 'no-store'
             }
-            return {
-                role: m.role === 'assistant' ? 'assistant' : 'user',
-                content: content || "สวัสดี"
-            };
         });
-
-        const lastMessage = coreMessages[coreMessages.length - 1]?.content || "";
-        const context = getRelevantKnowledge(lastMessage);
-
-        // Try gemini-2.0-flash-lite which is confirmed to exist
-        const result = streamText({
-            model: google("gemini-2.0-flash-lite"),
-            system: SYSTEM_PROMPT + context,
-            messages: coreMessages,
-        });
-
-        const response = result.toTextStreamResponse();
-        response.headers.set('X-Version', 'v80');
-        response.headers.set('Cache-Control', 'no-store, max-age=0');
-        return response;
     } catch (error) {
-        console.error("Chat API v80 Error:", error);
+        console.error("Chat API v90 Error:", error);
         return new Response(JSON.stringify({
-            version: "v80",
-            error: (error as Error).message
+            version: "v90",
+            error: (error as Error).message,
+            stack: (error as Error).stack
         }), {
             status: 500,
-            headers: { 'X-Version': 'v80', 'Content-Type': 'application/json' }
+            headers: { 'X-Version': 'v90', 'Content-Type': 'application/json' }
         });
     }
 }
