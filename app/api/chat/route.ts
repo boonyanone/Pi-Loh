@@ -1,5 +1,5 @@
 import { google } from "@ai-sdk/google";
-import { streamText } from "ai";
+import { generateText } from "ai";
 import { SYSTEM_PROMPT } from "@/lib/ai/system-prompt";
 import { getRelevantKnowledge } from "@/lib/ai/knowledge";
 
@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     try {
         const { messages } = await req.json();
 
-        // Map messages to ensure they match CoreMessage format expected by streamText
+        // Map messages to ensure they match CoreMessage format expected by AI SDK
         const coreMessages = messages.map((m: any) => ({
             role: m.role,
             content: m.content || m.parts?.filter((p: any) => p.type === 'text').map((p: any) => p.text).join('') || ''
@@ -23,16 +23,19 @@ export async function POST(req: Request) {
         const lastMessage = coreMessages[coreMessages.length - 1]?.content || "";
         const context = getRelevantKnowledge(lastMessage);
 
-        const result = streamText({
+        const { text } = await generateText({
             model: google("gemini-1.5-flash"),
             system: SYSTEM_PROMPT + context,
             messages: coreMessages,
         });
 
-        // Use toTextStreamResponse which is definitely available in the types
-        return result.toTextStreamResponse();
+        if (!text) {
+            return new Response("AI returned empty text", { status: 200 });
+        }
+
+        return new Response(text);
     } catch (error) {
         console.error("Chat API Error:", error);
-        return new Response(JSON.stringify({ error: (error as Error).message }), { status: 500 });
+        return new Response(JSON.stringify({ error: (error as Error).message, stack: (error as Error).stack }), { status: 500 });
     }
 }
