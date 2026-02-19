@@ -10,6 +10,7 @@ const google = createGoogleGenerativeAI({
 });
 
 export async function POST(req: Request) {
+    // VERSION: 10
     if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
         return new Response("Missing GOOGLE_GENERATIVE_AI_API_KEY", { status: 500 });
     }
@@ -17,13 +18,14 @@ export async function POST(req: Request) {
     try {
         const { text } = await generateText({
             model: google("gemini-1.5-flash-latest"),
-            prompt: "สวัสดีครับ ตอบสั้นๆ ว่าพร้อมใช้งาน",
+            prompt: "สวัสดีครับ ตอบสั้นๆ ว่าพร้อมใช้งาน (v10)",
         });
 
-        return new Response(text || "AI returned no text");
+        return new Response(`(v10) ${text || "AI returned no text"}`);
     } catch (error) {
         console.error("Chat API Error:", error);
         return new Response(JSON.stringify({
+            version: "v10",
             error: (error as Error).message,
             name: (error as any).name,
             data: (error as any).data
