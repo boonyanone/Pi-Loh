@@ -1,10 +1,14 @@
-import { google } from "@ai-sdk/google";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { generateText } from "ai";
 import { SYSTEM_PROMPT } from "@/lib/ai/system-prompt";
 import { getRelevantKnowledge } from "@/lib/ai/knowledge";
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
+
+const google = createGoogleGenerativeAI({
+    apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+});
 
 export async function POST(req: Request) {
     if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
@@ -24,7 +28,7 @@ export async function POST(req: Request) {
         const context = getRelevantKnowledge(lastMessage);
 
         const { text } = await generateText({
-            model: google("gemini-1.5-flash"),
+            model: google("gemini-1.5-flash-latest"),
             system: SYSTEM_PROMPT + context,
             messages: coreMessages,
         });
