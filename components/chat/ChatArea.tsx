@@ -8,14 +8,16 @@ interface ChatAreaProps {
 }
 
 export default function ChatArea({ onReferencesDetected }: ChatAreaProps) {
-    const [input, setInput] = useState('');
-    const { messages, append, status, error } = useChat({
+    const { messages, input, handleInputChange, handleSubmit, status, error, setInput } = useChat({
+        api: '/api/chat',
         onFinish: ({ message }) => {
             // Extract text from parts to find references
             const text = message.parts
-                .filter(p => p.type === 'text')
-                .map(p => (p as any).text)
-                .join('');
+                ? message.parts
+                    .filter(p => p.type === 'text')
+                    .map(p => (p as any).text)
+                    .join('')
+                : (message as any).content;
             findReferences(text);
         }
     });
@@ -35,25 +37,15 @@ export default function ChatArea({ onReferencesDetected }: ChatAreaProps) {
         }
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setInput(e.target.value);
-    };
-
-    const handleSubmit = async (e?: React.FormEvent) => {
-        e?.preventDefault();
-        if (!input.trim() || isLoading) return;
-        const text = input;
-        setInput('');
-
-        // Use append for standard SDK behavior
-        await append({
-            role: 'user',
-            content: text
-        });
+    // handleSubmit is provided natively by useChat, so we don't manually append.
+    const handleSuggestionClick = (text: string) => {
+        setInput(text);
+        // We can't immediately trigger handleSubmit natively without an event, 
+        // but we can let the user click send, or we can use the form reference.
     };
 
     const setSuggestion = (text: string) => {
-        setInput(text);
+        handleSuggestionClick(text);
     };
 
     return (
@@ -105,7 +97,7 @@ export default function ChatArea({ onReferencesDetected }: ChatAreaProps) {
                                 {m.role === 'user' ? 'คุณอภิชาติ (Accountant)' : 'พี่โล่ AI Consultant'}
                             </div>
                             <div className={`${m.role === 'user' ? 'bg-slate-50 border border-slate-200 rounded-tr-none' : 'bg-white border border-slate-200'} p-4 rounded-2xl text-slate-800 text-[15px] shadow-sm whitespace-pre-wrap`}>
-                                {renderContentWithHighlights(m.content)}
+                                {renderContentWithHighlights((m as any).content || m.text || "")}
                             </div>
                         </div>
                     </div>
