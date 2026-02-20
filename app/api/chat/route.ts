@@ -1,6 +1,7 @@
 import { SYSTEM_PROMPT } from "@/lib/ai/system-prompt";
 
 export const maxDuration = 30;
+export const dynamic = "force-dynamic";
 
 // VERCEL AI SDK INTEGRATION v700 - THE PIPELINE TEST
 // Bypassing Gemini to test the raw pipeline using GROQ as the LLM engine.
@@ -101,7 +102,9 @@ export async function POST(req: Request) {
         return new Response(stream, {
             headers: {
                 "Content-Type": "text/plain; charset=utf-8",
-                "X-Vercel-AI-Data-Stream": "v1"
+                "X-Vercel-AI-Data-Stream": "v1",
+                "Cache-Control": "no-cache, no-transform",
+                "Connection": "keep-alive"
             }
         });
 
