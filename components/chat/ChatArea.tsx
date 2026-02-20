@@ -9,7 +9,7 @@ interface ChatAreaProps {
 
 export default function ChatArea({ onReferencesDetected }: ChatAreaProps) {
     const [input, setInput] = useState('');
-    const { messages, append, status } = useChat({
+    const { messages, append, status, error } = useChat({
         onFinish: ({ message }) => {
             // Extract text from parts to find references
             const text = message.parts
@@ -110,6 +110,21 @@ export default function ChatArea({ onReferencesDetected }: ChatAreaProps) {
                         </div>
                     </div>
                 ))}
+
+                {error && (
+                    <div className="flex gap-4 max-w-4xl">
+                        <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-red-100 text-red-500 border border-red-200">
+                            <span className="material-symbols-outlined text-lg">error</span>
+                        </div>
+                        <div className="space-y-2 pt-1">
+                            <div className="text-sm font-bold text-red-900">System Error</div>
+                            <div className="bg-red-50 border border-red-200 p-4 rounded-2xl text-red-800 text-[15px] shadow-sm whitespace-pre-wrap">
+                                {error.message || JSON.stringify(error)}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 <div ref={messagesEndRef} />
             </div>
 
