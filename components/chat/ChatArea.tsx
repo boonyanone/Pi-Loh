@@ -97,7 +97,7 @@ export default function ChatArea({ onReferencesDetected }: ChatAreaProps) {
                                 {m.role === 'user' ? 'คุณอภิชาติ (Accountant)' : 'พี่โล่ AI Consultant'}
                             </div>
                             <div className={`${m.role === 'user' ? 'bg-slate-50 border border-slate-200 rounded-tr-none' : 'bg-white border border-slate-200'} p-4 rounded-2xl text-slate-800 text-[15px] shadow-sm whitespace-pre-wrap`}>
-                                {renderContentWithHighlights((m as any).content || m.text || "")}
+                                {renderContentWithHighlights((m as any).content || (m as any).text || "")}
                             </div>
                         </div>
                     </div>
